@@ -36,13 +36,22 @@ Route::get('/clear', function() {
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
+    Route::post('/drop-remove-file',[\App\Http\Controllers\Admin\DropzoneController::class, 'removeOne'])->name('dropzone.remove.one');
 
     Route::resource('/slider', \App\Http\Controllers\Admin\Content\SliderController::class);
+    Route::post('/slider-img-upload',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgUpload'])->name('slider.img.upload');
+    Route::post('/slider-img-update',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgUpdate'])->name('slider.img.update');
+    Route::post('/slider-img-update-remove',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgRemoveForUpdate'])->name('slider.img.remove');
 
+    Route::resource('/category', \App\Http\Controllers\Admin\Catalog\CategoryController::class);
 
+    Route::post('/category-img-upload',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'imgUpload'])->name('category.img.upload');
+    Route::post('/category-img-update',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'imgUpdate'])->name('category.img.update');
+    Route::post('/category-img-update-remove',[\App\Http\Controllers\Catalog\Content\CategoryController::class, 'imgRemoveForUpdate'])->name('category.img.remove');
 
-
-
+    //Route::post('/category-thumb-upload',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'thumbUpload'])->name('category.thumb.upload');
+    Route::post('/category-thumb-update',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'thumbUpdate'])->name('category.thumb.update');
+    Route::post('/category-thumb-update-remove',[\App\Http\Controllers\Catalog\Content\CategoryController::class, 'thumbRemoveForUpdate'])->name('category.thumb.remove');
 
 
 });

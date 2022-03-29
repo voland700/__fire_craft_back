@@ -1,0 +1,39 @@
+.dropzone {
+    border-radius: 10px;
+}
+.formDelete{
+    display: inline;
+}
+
+td .btn-sm{
+    font-size: .75rem;
+    margin-right: 2px;
+}
+
+.red-icon,
+.green-icon,
+.pale-icon{
+    display: block;
+    text-align: center;
+}
+
+.red-icon{
+    color: #f80c35;
+}
+.green-icon{
+    color: #00913b;
+}
+.pale-icon {
+    color: #d8d8d8;
+}
+
+.new-icon{
+    color: #00913b;
+    display: inline-block;
+    margin-right: 2px;
+}
+.old-icon {
+    color: #d8d8d8;
+    display: inline-block;
+    margin-right: 2px;
+}

@@ -21,7 +21,7 @@
             </div>
         @endif
     </div>
-    <form id="create" role="form" method="post" action="{{ route('slider.store') }}" enctype="multipart/form-data">
+    <form id="createForm" role="form" method="post" action="{{ route('slider.store') }}" enctype="multipart/form-data">
         @csrf
     <div class="col-md-6">
         <!-- Default box -->
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="imageDropzone">Изображение слайда</label>
-                        <div class="dropzone" id="imageDropzone" data-action="777"></div>
+                        <div class="dropzone" id="imageDropzone"></div>
                     </div>
                 </div>
 
@@ -75,11 +75,13 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                <p></p>
             </div>
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
+
+        <button type="submit" id="sendForm" class="btn btn-primary mt-3 mb-3">Применить</button>
     </div>
 
 
@@ -91,14 +93,15 @@
 @section('scripts')
 <script>
 
-
     const img = document.getElementById('img');
     let pathFile = null;
+
+    //let createForm = document.getElementById('createForm');
 
     Dropzone.autoDiscover = false;
     new Dropzone("#imageDropzone",
         {
-            url: document.getElementById('imageDropzone').getAttribute('data-action'),
+            url: '/admin/slider-img-upload',
             headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
             method: 'POST',
             maxFilesize: 1,
@@ -123,7 +126,23 @@
             }
         });
 
-    
+    function RemoveNewInput(path){
+        $.ajax(
+            {
+                url: "/admin/drop-remove-file",
+                type: 'POST',
+                data: {
+                    _token: document.querySelector('meta[name=csrf-token]').content,
+                    path: path,
+                },
+                success: function (response) {
+                    console.log(response.success);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+    }
 
 
 
