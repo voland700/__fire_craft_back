@@ -171,7 +171,7 @@
 
         </div><!-- /.END ROW -->
 
-        <button type="submit" class="btn btn-primary mt-3">Применить</button>
+        <button type="submit" class="btn btn-primary mt-3 mb-3">Применить</button>
     </form>
 
 @endsection
@@ -223,6 +223,44 @@
                     //return false;
                 }
             });
+        let thumbnailDropzone = new Dropzone("#thumbDropzone",
+            {
+                url: '/admin/category-img-update',
+                headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
+                method: 'POST',
+                maxFilesize: 1,
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                addRemoveLinks: true,
+                timeout: 60000,
+                params: {
+                    id: {{$id}}
+                },
+                @if(count($thumbnail)>0)
+                init: function () {
+                    let thumbnailDropzone = this;
+                    let mockFile = {name: "{{ $thumbnail['name'] }}", size: Number("{{$thumbnail['size']}}")};
+                    thumbnailDropzone.displayExistingFile(mockFile, "{{ asset( $thumbnail['path']) }}" );
+                    //console.log()
+                },
+                @endif
+                removedfile: function(file){
+                    file.previewElement.remove();
+                    thumbnail.value=null;
+                    RemoveFile(pathThumbnail);
+                    pathThumbnail = null;
+                },
+                success: function (file, response) {
+                    console.log(response.success);
+                    pathThumbnail = response.success;
+                    thumbnail.value = response.success;
+                },
+                error: function (file, response) {
+                    console.log(response);
+                    //return false;
+                }
+            });
+
+
 
         function RemoveFile(path){
             $.ajax(

@@ -98,7 +98,13 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $data = $request->all();
+        $data['active']=$request->has('active') ? 1 : 0;
+        $data['main']=$request->has('main') ? 1 : 0;
+        $category->update($data);
+        $category::fixTree();
+        return redirect()->route('category.index')->with('success', 'Данные обновлены');
     }
 
     /**
@@ -109,7 +115,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if (Storage::disk('public')->exists(str_replace('storage', '', $category->img))){
+            Storage::disk('public')->delete(str_replace('storage', '', $category->img));
+        }
+        if (Storage::disk('public')->exists(str_replace('storage', '', $category->thumbnail))){
+            Storage::disk('public')->delete(str_replace('storage', '', $category->thumbnail));
+        }
+        $category->delete();
+        $category::fixTree();
+        return redirect()->route('category.index')->with('success', 'Категория удалена');
     }
 
     public function imgUpload(Request $request)

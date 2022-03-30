@@ -37,3 +37,24 @@ td .btn-sm{
     display: inline-block;
     margin-right: 2px;
 }
+
+.colorOffer{
+    max-width: 24px;
+    max-height: 24px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+.color_img_wrap{
+    display: flex;
+    justify-items: center;
+    height: 50px;
+}
+.color_img{
+    max-width: 24px;
+    max-height: 24px;
+    display: block;
+    margin: auto 0 auto 15px;
+    border-radius: 3px;
+}

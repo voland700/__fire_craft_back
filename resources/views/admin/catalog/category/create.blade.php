@@ -244,6 +244,8 @@
                 });
 
 
+
+
             function RemoveNewInput(path){
                 $.ajax(
                     {

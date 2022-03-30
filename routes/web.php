@@ -47,13 +47,15 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/category-img-upload',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'imgUpload'])->name('category.img.upload');
     Route::post('/category-img-update',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'imgUpdate'])->name('category.img.update');
-    Route::post('/category-img-update-remove',[\App\Http\Controllers\Catalog\Content\CategoryController::class, 'imgRemoveForUpdate'])->name('category.img.remove');
-
-    //Route::post('/category-thumb-upload',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'thumbUpload'])->name('category.thumb.upload');
+    Route::post('/category-img-update-remove',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'imgRemoveForUpdate'])->name('category.img.remove');
     Route::post('/category-thumb-update',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'thumbUpdate'])->name('category.thumb.update');
-    Route::post('/category-thumb-update-remove',[\App\Http\Controllers\Catalog\Content\CategoryController::class, 'thumbRemoveForUpdate'])->name('category.thumb.remove');
+    Route::post('/category-thumb-update-remove',[\App\Http\Controllers\Admin\Catalog\CategoryController::class, 'thumbRemoveForUpdate'])->name('category.thumb.remove');
 
+    Route::get('/currency', [\App\Http\Controllers\Admin\Catalog\CurrencyController::class, 'index'])->name('currency.index');
+    Route::get('/get-currency', [\App\Http\Controllers\Admin\Catalog\CurrencyController::class, 'get'])->name('get_currency');
+    Route::get('/update-prices', [\App\Http\Controllers\Admin\Catalog\CurrencyController::class, 'updatePrices'])->name('update_prices');
 
+    Route::resource('/color', \App\Http\Controllers\Admin\Catalog\ColorController::class);
 });
 
 
