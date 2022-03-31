@@ -43,4 +43,29 @@ Breadcrumbs::for('color.edit', function (BreadcrumbTrail $trail, \App\Models\Col
     $trail->parent('color.index', $color);
     $trail->push($color->name, route('color.edit', $color));
 });
-
+// Properties
+Breadcrumbs::for('property.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Характеристики', route('property.index'));
+});
+Breadcrumbs::for('property.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('property.index');
+    $trail->push('Новая характеристика', route('property.create'));
+});
+Breadcrumbs::for('property.edit', function (BreadcrumbTrail $trail, \App\Models\Property $property) {
+    $trail->parent('property.index', $property);
+    $trail->push($property->name, route('property.edit', $property));
+});
+//Documents
+Breadcrumbs::for('document.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Документы', route('document.index'));
+});
+Breadcrumbs::for('document.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('document.index');
+    $trail->push('Новый документ', route('document.create'));
+});
+Breadcrumbs::for('document.edit', function (BreadcrumbTrail $trail, \App\Models\Document $document) {
+    $trail->parent('document.index', $document);
+    $trail->push($document->name, route('document.edit', $document));
+});

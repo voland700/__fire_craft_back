@@ -34,6 +34,7 @@
             <div class="col-md-6"><!-- Start cart -->
                 <div class="card">
                     <div class="card-header">
+                        <a href="{{route('category.index')}}" class="float-left mr-2"><i class="fas fa-arrow-alt-circle-left"></i></a>
                         <h3 class="card-title">Общие данные категорий</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -79,9 +80,10 @@
                         <div class="form-group">
                             <label for="parent_id">Родительская категория</label>
                             <select name="parent_id" class="form-control">
+                                @if($category->parentId == NULL) <option value="" selected >Нет родительской</option> @else <option value="">Нет родительской</option> @endif
                                 @php
                                     $traverse = function ($categories, $prefix = '-&ensp;', $parentId=NULL) use (&$traverse) {
-                                        echo ($parentId == NULL) ? '<option value="" selected >Нет родительской</option>' : '<option value="">Нет родительской</option>';
+                                        //echo ($parentId == NULL) ? '<option value="" selected >Нет родительской</option>' : '<option value="">Нет родительской</option>';
                                         foreach ($categories as $category) {
                                             $checked = ($category->id == $parentId) ? 'selected' : '';
                                             echo  '<option value="'.$category->id.'" '.$checked.'>'.$prefix.' '.$category->name.'</option>';

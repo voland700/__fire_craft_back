@@ -26,12 +26,14 @@
         @endif
     </div>
 
-    <form id="create" role="form" method="post" action="{{ route('category.store') }}">
+    <div id="create" role="form" method="post" action="{{ route('category.store') }}">
         @csrf
         <div class="row">
 
             <div class="col-md-6"><!-- Start cart -->
+
                 <div class="card">
+
                     <div class="card-header">
                         <a href="{{route('category.index')}}" class="float-left mr-2"><i class="fas fa-arrow-alt-circle-left"></i></a>
                         <h3 class="card-title">Общие данные категорий</h3>
@@ -42,6 +44,7 @@
                                 <i class="fas fa-times"></i></button>
                         </div>
                     </div>
+
                     <div class="card-body">
 
                         <div class="form-group">
@@ -50,7 +53,7 @@
                                 <label for="active" class="custom-control-label">Категория активна</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="main" id="main">
+                                <input class="custom-control-input" type="checkbox" name="main" id="main">
                                 <label for="main" class="custom-control-label">Показывать на главной</label>
                             </div>
                         </div>
@@ -112,8 +115,8 @@
                         <p></p>
                     </div><!-- /.card-footer-->
                 </div>
-            </div>
 
+            </div>
 
             <div class="col-md-6">
                 <div class="card">
@@ -172,6 +175,8 @@
             </div>
 
         </div><!-- /.END ROW -->
+
+
 
         <button type="submit" class="btn btn-primary mt-3 mb-3">Применить</button>
 
@@ -265,4 +270,4 @@
             }
         }
     </script>
-@endsection
+@endsectionтфьу

@@ -17,11 +17,11 @@ class ColorSeeder extends Seeder
     {
         DB::table('colors')->insert([
             'name' => 'Черный цвет BP',
-            'file' => 'storage/images/color/bbe.jpg'
+            'file' => 'storage/images/color/bp.jpg'
         ]);
         DB::table('colors')->insert([
             'name' => 'Тёмно-синяя эмаль BBE',
-            'file' => 'storage/images/color/bp.jpg'
+            'file' => 'storage/images/color/bbe.jpg'
         ]);
         DB::table('colors')->insert([
             'name' => 'Эмаль корричневая майолика BRM',
@@ -38,10 +38,6 @@ class ColorSeeder extends Seeder
         DB::table('colors')->insert([
             'name' => 'Черный лак BLE',
             'file' => 'storage/images/color/ble.jpg'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Черный цвет BP',
-            'file' => 'storage/images/color/bp.jpg'
         ]);
         DB::table('colors')->insert([
             'name' => 'Белый лак GWH',
