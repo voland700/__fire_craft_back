@@ -61,19 +61,31 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/color', \App\Http\Controllers\Admin\Catalog\ColorController::class);
     Route::resource('/property', \App\Http\Controllers\Admin\Catalog\PropertyController::class);
 
-
+    //Product
     Route::get('/product-list/{id?}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'list'])->name('product.list');
     Route::get('/product-create/{id?}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'create'])->name('product.create');
     Route::post('/product-store', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'store'])->name('product.store');
     Route::get('/product-edit/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/product-update', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'update'])->name('product.update');
+    Route::match(['put', 'patch'],'/product-update/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'update'])->name('product.update');
     Route::delete('/product-destroy/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'destroy'])->name('product.destroy');
-
-
-
+    //Product - upload, create images -dropzone uploader
     Route::post('/product-upload-img', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImgUpload'])->name('product.upload.img');
     Route::post('/product-upload-images', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesUpload'])->name('product.upload.images');
     Route::post('/product-upload-images-remove', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesRemove'])->name('product.create.images.remove');
+    //Product - update, images -dropzone uploader
+    Route::post('/product-update-img', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'UpdateImgUpload'])->name('product.update.img');
+    Route::post('/product-update-preview', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'UpdatePreviewUpload'])->name('product.update.preview');
+    Route::post('/product-update-images', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'UpdateImagesUpload'])->name('product.update.images');
+    Route::post('/product-update-img-remove', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'UpdateImgRemove'])->name('product.update.img.remove');
+    Route::post('/product-update-images-remove', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'UpdateImagesRemove'])->name('product.update.images.remove');
+
+    //Offer
+    Route::get('/offer-list/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'list'])->name('offer.list');
+    Route::get('/offer-create/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'create'])->name('offer.create');
+    Route::post('/offer-store', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'store'])->name('offer.store');
+    Route::get('/offer-edit/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'edit'])->name('offer.edit');
+    Route::match(['put', 'patch'],'/offer-update/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'update'])->name('offer.update');
+    Route::delete('/offer-destroy/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'destroy'])->name('offer.destroy');
 
 
 });

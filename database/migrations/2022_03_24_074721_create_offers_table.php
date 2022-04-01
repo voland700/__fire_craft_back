@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-
             $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade'); 
+            $table->bigInteger('color_id')->unsigned();
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->integer('active')->unsigned()->default(1);
+            $table->integer('hit')->unsigned()->default(0);
+            $table->integer('new')->unsigned()->default(0);
+            $table->integer('stock')->unsigned()->default(0);
+            $table->integer('advice')->unsigned()->default(0);
             $table->integer('sort')->unsigned()->default(500);
             $table->string('number')->nullable();
             $table->string('img')->nullable();

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -80,6 +81,31 @@ class Product extends Model
         return $this->hasOne('App\Models\Currency', 'currency', 'currency');
     }
 
+    //Observer
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($product) {
+            if(!$product->images->isEmpty()){
+                foreach ($product->images as $image){
+                    if (Storage::disk('public')->exists(str_replace('storage', '', $image->img))){
+                        Storage::disk('public')->delete(str_replace('storage', '', $image->img));
+                    }
+                    if (Storage::disk('public')->exists(str_replace('storage', '', $image->thumbnail))){
+                        Storage::disk('public')->delete(str_replace('storage', '', $image->thumbnail));
+                    }
+                }
+            }
+            if ($product->img && Storage::disk('public')->exists(str_replace('storage', '', $product->img))){
+                Storage::disk('public')->delete(str_replace('storage', '', $product->img));
+            }
+            if ($product->thumbnail && Storage::disk('public')->exists(str_replace('storage', '', $product->thumbnail))){
+                Storage::disk('public')->delete(str_replace('storage', '', $product->thumbnail));
+            }
+            if ($product->preview && Storage::disk('public')->exists(str_replace('storage', '', $product->preview))){
+                Storage::disk('public')->delete(str_replace('storage', '', $product->preview));
+            }
+        });
+    }
 
     //Accessors
     public function getMiniatureAttribute()
@@ -87,14 +113,18 @@ class Product extends Model
         return (!$this->thumbnail==NULL) ? $this->thumbnail : '/images/src/no-photo/no-photo_thamb.jpg';
     }
 
-    public function getPhotoAttribute()
+    public function getPictureAttribute()
     {
         return (!$this->img==NULL) ? $this->img : '/images/src/no-photo/no-photo.jpg';
     }
 
-    public function getPreviewAttribute()
+    public function getSmallAttribute()
     {
-        return (!$this->preview==NULL) ? $this->img : '/images/src/no-photo/no-photo.jpg';
+        return (!$this->preview==NULL) ? $this->preview : '/images/src/no-photo/no-photo_small.jpg';
+    }
+    public function getThumbAttribute()
+    {
+        return (!$this->thumbnail==NULL) ? $this->thumbnail : '/images/src/no-photo/no-photo_thamb.jpg';
     }
 
     public function getTitleAttribute()
