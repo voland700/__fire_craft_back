@@ -179,23 +179,6 @@
 @section('scripts')
 
     <script>
-        let count = 1;
-        let namber = 100;
-
-        document.getElementById('addDoc').addEventListener('click', function (e){
-            e.preventDefault();
-            document.getElementById('Docs').insertAdjacentHTML('beforeend', '<div class="col-sm-3"><input type="number" class="form-control mb-2"  name="doc[]"   value=""></div>');
-        });
-
-        document.getElementById('addProperties').addEventListener('click', function (e){
-            e.preventDefault();
-            let tmpl = tmplProperty.content.cloneNode(true);
-            tmpl.querySelector('.name').setAttribute('name', 'properties['+namber+'][name]');
-            tmpl.querySelector('.value').setAttribute('name', 'properties['+namber+'][value]');
-            namber++;
-            document.getElementById('propertiesList').append(tmpl);
-        })
-
 
         if(document.getElementById('create')){
             const img = document.getElementById('img');
@@ -205,7 +188,7 @@
             Dropzone.autoDiscover = false;
             let myDropzone = new Dropzone("#imageDropzone",
                 {
-                    url: '{{route('product.upload.img')}}',
+                    url: '{{route('offer.upload.img')}}',
                     headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
                     method: 'POST',
                     maxFilesize: 1,

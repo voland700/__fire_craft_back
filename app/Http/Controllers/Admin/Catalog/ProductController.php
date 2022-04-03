@@ -52,7 +52,7 @@ class ProductController extends Controller
         $data['new'] = $request->has('new') ? 1 : 0;
         $data['stock'] = $request->has('stock') ? 1 : 0;
         $data['advice'] = $request->has('advice') ? 1 : 0;
-        $data['category_id'] = $request->category_id != 0 ? $request->category_id : NULL;
+        $data['category_id'] = !$request->category_id ? $request->category_id : 0;
 
         $properties = [];
         if($data['properties']){
@@ -161,7 +161,7 @@ class ProductController extends Controller
         $data['hit'] = $request->has('hit') ? 1 : 0;
         $data['new'] = $request->has('new') ? 1 : 0;
         $data['stock'] = $request->has('stock') ? 1 : 0;
-        $data['category_id'] = $request->category_id != 0 ? $request->category_id : NULL;
+        $data['category_id'] = !$request->category_id  ? $request->category_id : 0;
 
         $properties = [];
         if(array_key_exists('properties', $data)){

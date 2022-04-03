@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertySeeder::class);
         $this->call(CurrenciesSeeder::class);
         $this->call(RegionSeeder::class);
+		$this->call(ColorSeeder::class);
     }
 }

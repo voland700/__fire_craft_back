@@ -86,7 +86,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/offer-edit/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'edit'])->name('offer.edit');
     Route::match(['put', 'patch'],'/offer-update/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'update'])->name('offer.update');
     Route::delete('/offer-destroy/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'destroy'])->name('offer.destroy');
-
+    //Offer - upload, create images -dropzone uploader
+    Route::post('/offer-upload-img', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImgUpload'])->name('offer.upload.img');
+    Route::post('/offer-upload-images', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesUpload'])->name('offer.upload.images');
+    Route::post('/offer-upload-images-remove', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesRemove'])->name('offer.create.images.remove');
 
 });
 
