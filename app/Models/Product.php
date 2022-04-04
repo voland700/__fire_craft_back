@@ -36,7 +36,8 @@ class Product extends Model
         'currency',
         'base_price',
         'price',
-        'properties'
+        'properties',
+        'accessory'
     ];
 
     public function getSlugOptions() : SlugOptions

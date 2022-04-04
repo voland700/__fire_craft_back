@@ -41,7 +41,7 @@
                             <tr>
                                 <td class="text-center">{{$loop->iteration}}</td>
                                 <td><a href="{{route("offer.edit", $offer->id)}}">{{$offer->name}}</a></td>
-                                <td class="td_color">@if($offer->color) <img src="{{asset($offer->color)}}" class="colorOffer"> @endif</td>
+                                <td class="td_color">@if($offer->color->file) <img src="{{asset($offer->color->file)}}" class="colorOffer"> @endif</td>
                                 <td>
                                     @if ($offer->active === 0)
                                         <span class="pale-icon"><i class="far fa-check-circle"></i></span>

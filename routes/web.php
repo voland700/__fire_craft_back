@@ -82,15 +82,31 @@ Route::group(['prefix' => 'admin'], function () {
     //Offer
     Route::get('/offer-list/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'list'])->name('offer.list');
     Route::get('/offer-create/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'create'])->name('offer.create');
-    Route::post('/offer-store', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'store'])->name('offer.store');
-    Route::get('/offer-edit/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'edit'])->name('offer.edit');
-    Route::match(['put', 'patch'],'/offer-update/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'update'])->name('offer.update');
-    Route::delete('/offer-destroy/{id}', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'destroy'])->name('offer.destroy');
+    Route::post('/offer-store', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'store'])->name('offer.store');
+    Route::get('/offer-edit/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'edit'])->name('offer.edit');
+    Route::match(['put', 'patch'],'/offer-update/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'update'])->name('offer.update');
+    Route::delete('/offer-destroy/{id}', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'destroy'])->name('offer.destroy');
     //Offer - upload, create images -dropzone uploader
-    Route::post('/offer-upload-img', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImgUpload'])->name('offer.upload.img');
-    Route::post('/offer-upload-images', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesUpload'])->name('offer.upload.images');
-    Route::post('/offer-upload-images-remove', [\App\Http\Controllers\Admin\Catalog\ProductController::class, 'CreateImagesRemove'])->name('offer.create.images.remove');
+    Route::post('/offer-upload-img', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'CreateImgUpload'])->name('offer.upload.img');
+    Route::post('/offer-upload-images', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'CreateImagesUpload'])->name('offer.upload.images');
+    Route::post('/offer-upload-images-remove', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'CreateImagesRemove'])->name('offer.create.images.remove');
+    //Offer - update, images (photo)-dropzone uploader
+    Route::post('/offer-update-img', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'UpdateImgUpload'])->name('offer.update.img');
+    Route::post('/offer-update-preview', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'UpdatePreviewUpload'])->name('offer.update.preview');
+    Route::post('/offer-update-images', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'UpdateImagesUpload'])->name('offer.update.images');
+    Route::post('/offer-update-img-remove', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'UpdateImgRemove'])->name('offer.update.img.remove');
+    Route::post('/offer-update-images-remove', [\App\Http\Controllers\Admin\Catalog\OfferController::class, 'UpdateImagesRemove'])->name('offer.update.images.remove');
 
+
+    //Discount
+    Route::resource('discounts', \App\Http\Controllers\Admin\Catalog\DiscountController::class);
+    Route::post('/discounts-goods-create', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'choice_goods_create'])->name('discounts.goods.create');
+    Route::post('/discounts_choice_categories', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'choice_categories'])->name('discounts.choice.categories');
+    Route::get('/discounts_create_paginate', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'create_paginate'])->name('discounts.create.paginate');
+    Route::post('/discounts_goods_update', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'choice_goods_update'])->name('discounts.goods.update');
+
+    Route::post('/discounts_choice_categories_up', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'choice_categories_update'])->name('discounts.choice.categories.update');
+    Route::post('/discounts_update_paginate', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'update_paginate'])->name('discounts.update.paginate');
 });
 
 

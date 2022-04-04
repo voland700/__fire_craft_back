@@ -69,3 +69,17 @@ Breadcrumbs::for('document.edit', function (BreadcrumbTrail $trail, \App\Models\
     $trail->parent('document.index', $document);
     $trail->push($document->name, route('document.edit', $document));
 });
+
+// Discounts
+Breadcrumbs::for('discounts.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Скидки', route('discounts.index'));
+});
+Breadcrumbs::for('discounts.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('discounts.index');
+    $trail->push('Новая скидка', route('discounts.create'));
+});
+Breadcrumbs::for('discounts.edit', function (BreadcrumbTrail $trail, \App\Models\Discount $discount) {
+    $trail->parent('discounts.index', $discount);
+    $trail->push($discount->name, route('discounts.edit', $discount));
+});

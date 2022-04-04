@@ -190,6 +190,29 @@
             </div><!-- END цена и валюта -->
 
 
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Аксессуры для товара (HTML)</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="summary">Данные об аксессуарах для товара</label>
+                            <textarea class="form-control" id="accessory" name="accessory" rows="5" placeholder="HTML table...">{{ old('accessory') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer clearfix"><p></p></div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
 
             <div class="card">
                 <div class="card-header">

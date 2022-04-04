@@ -24,8 +24,9 @@
         @endif
     </div>
 
-    <form id="create" role="form" method="post" action="{{ route('offer.store') }}">
+    <form id="create" role="form" method="post" action="{{ route('offer.store', $product->id) }}">
         @csrf
+        <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="row">
 
             <div class="col-md-6"><!-- Start cart -->
@@ -86,18 +87,33 @@
                             <label for="sort" class="col-sm-4 col-form-label">Сортировка</label>
 
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="art_number"  name="art_number">
+                                <input type="text" class="form-control" id="number"  name="number">
                             </div>
                             <label for="number" class="col-sm-2 col-form-label">Артикул</label>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="name" class="col-sm-12 col-form-label">Название</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"   value="{{ old('name') }}" placeholder="Название...">
                             </div>
                         </div>
 
+                        <div class="row mb-4">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label for="price" class="col-sm-2 col-form-label">Цвет</label>
+                                    <div class="col-sm-10">
+                                        <select name="color_id" class="form-control">
+                                            @foreach($colors as $color)
+                                                <option value="{{$color->id}}">{{$color->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <input type="hidden" name="img" id="img" value="">
                         <input type="hidden" name="preview" id="preview" value="">
@@ -208,7 +224,6 @@
                     success: function (file, response) {
                         img.value = response.success;
 
-
                         console.log(response.success);
                     },
                     error: function (file, response) {
@@ -219,7 +234,7 @@
 
             let thumbnailDropzone = new Dropzone("#thumbnailDropzone",
                 {
-                    url: '{{route('product.upload.img')}}',
+                    url: '{{route('offer.upload.img')}}',
                     headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
                     method: 'POST',
                     maxFilesize: 1,
@@ -268,7 +283,7 @@
 
             let imagesDropzone = new Dropzone("#imagesDropzone",
                 {
-                    url: '{{route('product.upload.images')}}',
+                    url: '{{route('offer.upload.images')}}',
                     headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
                     method: 'POST',
                     paramName: 'image',
@@ -294,7 +309,7 @@
             function RemoveImageFile(path){
                 $.ajax(
                     {
-                        url: '{{route('product.create.images.remove')}}',
+                        url: '{{route('offer.create.images.remove')}}',
                         type: 'POST',
                         data: {
                             _token: document.querySelector('meta[name=csrf-token]').content,

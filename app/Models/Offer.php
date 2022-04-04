@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Offer extends Model
 {
@@ -11,6 +12,7 @@ class Offer extends Model
     protected $fillable = [
         'name',
         'product_id',
+        'color_id',
         'active',
         'sort',
         'diameter',
@@ -59,15 +61,36 @@ class Offer extends Model
         return (!$this->img==NULL) ? $this->img : '/images/src/no-photo/no-photo.jpg';
     }
 
-    public function getPreviewAttribute()
+    public function getSmallAttribute()
     {
-        return (!$this->preview==NULL) ? $this->img : '/images/src/no-photo/no-photo.jpg';
+        return (!$this->preview==NULL) ? $this->preview : '/images/src/no-photo/no-photo_small.jpg';
     }
 
-
-
-
-
+    //Observer
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($offer) {
+            if(!$offer->photos->isEmpty()){
+                foreach ($offer->photos as $image){
+                    if (Storage::disk('public')->exists(str_replace('storage', '', $image->img))){
+                        Storage::disk('public')->delete(str_replace('storage', '', $image->img));
+                    }
+                    if (Storage::disk('public')->exists(str_replace('storage', '', $image->thumbnail))){
+                        Storage::disk('public')->delete(str_replace('storage', '', $image->thumbnail));
+                    }
+                }
+            }
+            if ($offer->img && Storage::disk('public')->exists(str_replace('storage', '', $offer->img))){
+                Storage::disk('public')->delete(str_replace('storage', '', $offer->img));
+            }
+            if ($offer->thumbnail && Storage::disk('public')->exists(str_replace('storage', '', $offer->thumbnail))){
+                Storage::disk('public')->delete(str_replace('storage', '', $offer->thumbnail));
+            }
+            if ($offer->preview && Storage::disk('public')->exists(str_replace('storage', '', $offer->preview))){
+                Storage::disk('public')->delete(str_replace('storage', '', $offer->preview));
+            }
+        });
+    }
 
 
 
