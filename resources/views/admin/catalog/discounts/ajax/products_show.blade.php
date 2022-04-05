@@ -18,25 +18,30 @@
             </ui>
         </div>
         <div class="col-md-9" class="d_contemt" id="DiscountContemt" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 350px;">
+
+
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <th style="width: 10px"> </th>
-                        <th>Наименование</th>
-                        <th style="width: 20px">ID</th>
-                    </tr>
+                    <tr><th>Наименование товара и опций</th></tr>
                 </thead>
                 <tbody class="d_table">
                 @forelse ($products as $product)
                 <tr>
                     <td>
-                        <span class="d_btn btn btn-block btn-default" data-id="{{ $product->id }}" data-name="{{ $product->name }}"><i class="far fa-check-square fa-sm"></i></span>
+                    @if(!count($product->offers))
+                        <span class="d-link d-product" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-type="product">{{ $product->name }}</span> <span class="d-id">({{$product->id}})</span>
+                    @else
+                        <span class="d-item">{{ $product->name }}</span> <span class="d-id">({{$product->id}})</span>
+                        <ul class="d-offer-list">
+                            @foreach($product->offers as $offer)
+                            <li><span class="d-link d-offer" data-id="{{ $offer->id }}"  data-name="{{ $offer->name }}"  data-type="offer">{{ $offer->name }}</span> <span class="d-id">({{$offer->id}})</span></li>
+                            @endforeach
+                        </ul>
+                    @endif
                     </td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->id }}</td>
                 </tr>
                 @empty
-                    <tr><td colspan="3"><p>В данном разделе товаров нет.</p></td></tr>
+                    <tr><td><p>В данном разделе товаров нет.</p></td></tr>
                 @endforelse
                 </tbody>
             </table>

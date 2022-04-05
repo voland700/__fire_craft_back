@@ -176,7 +176,7 @@ class DiscountController extends Controller
         $categories = Category::get()->toTree();
         switch ($kind) {
             case 'goods':
-                $products = Product::orderBy('sort', 'asc')->paginate(10);
+                $products = Product::with('offers', 'discount')->orderBy('sort', 'asc')->paginate(10);
                 $categoryId = 0;
                 $products->withPath('/admin/discounts_create_paginate');
                 return view('admin.catalog.discounts.ajax.products_show', compact('categoryId','categories', 'products'));
@@ -194,14 +194,10 @@ class DiscountController extends Controller
         $id = $request->id;
 
         $DataCategories = Category::descendantsAndSelf($id);
-        $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(10);
+        $products = Product::with('offers')->whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(10);
         $categoryId = $request->id;
         $products->withPath('/admin/discounts_create_paginate');
         return view('admin.catalog.discounts.ajax.products_choice', compact('products', 'categoryId'));
-
-        //dd($products->all();
-        //return view('admin.catalog.discounts.ajax.tesst');
-
     }
 
 

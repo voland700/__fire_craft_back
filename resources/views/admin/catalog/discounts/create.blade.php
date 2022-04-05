@@ -206,6 +206,7 @@
                 }
             });
 
+        //Категории  - left sidebar
         function choiceGoods() {
             document.querySelectorAll('.d_label').forEach(function (item) {
                 item.addEventListener('click', function(e){
@@ -232,7 +233,7 @@
         }
     }
 
-
+    //AJAX - выбор категории
     function ChoiceGoodsCategory(id) {
         let DiscountContemt = document.getElementById('DiscountContemt');
         $.ajax(
@@ -256,6 +257,72 @@
                 }
             });
     }
+
+    //Выбор товара или предложения для скидки
+    function selectionGoods(){
+        let arrProductID = [];
+        let arrOfferID = [];
+        document.querySelectorAll('.d-link').forEach(function (item) {
+            item.addEventListener('click', function(e){
+                let elem = e.currentTarget;
+                const GoodsList =document.getElementById('GoodsList');
+                if(elem.classList.contains('d-link') && !elem.classList.contains('d-active')){
+                    elem.classList.add('d-active');
+
+                    let id = elem.getAttribute('data-id');
+                    let name = elem.getAttribute('data-name');
+                    let type = elem.getAttribute('data-type');
+
+                    let li = document.createElement("li");
+                    let btn = document.createElement("span");
+                    let namberId = document.createElement("span");
+                    let input = document.createElement("input");
+
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('value', id);
+                    if(type == 'product') input.setAttribute('name', `productsID[]`);
+                    if(type == 'offer') input.setAttribute('name', `offersID[]`);
+
+                    namberId.className = "d_id";
+                    namberId.innerText = '('+id+')';
+                    btn.className = "d_btn-del";
+                    btn.innerText = '×';
+
+                    btn.addEventListener('click', function(){
+                        if(type == 'product'){
+                            arrProductID.splice(arrProductID.indexOf(id),1);
+                        }
+                        if(type == 'offer'){
+                            arrOfferID.splice(arrOfferID.indexOf(id),1);
+                        }
+                        this.parentNode.remove();
+                    });
+
+                    if(type == 'product') li.innerText = name;
+                    if(type == 'offer') li.innerHTML = '<span class="d-offer_item">offer:</span> '+name;
+
+                    li.append(namberId);
+                    li.append(btn);
+                    li.append(input);
+                    if(!arrProductID.includes(id) && type == 'product' ){
+                        arrProductID.push(id);
+                        GoodsList.append(li);
+                        document.querySelector('.discount-list').style.display = 'block';
+                    }
+                    if(!arrOfferID.includes(id) && type == 'offer' ){
+                        arrOfferID.push(id);
+                        GoodsList.append(li);
+                        document.querySelector('.discount-list').style.display = 'block';
+                    }
+                }
+
+            });
+        });
+    }
+
+
+
+
 
     /*
      function ChoiceGoodsCategory(id){
@@ -299,9 +366,7 @@
 
 */
 
-
-
-
+/*
     function selectionGoods(){
         let arrID = [];
         document.querySelectorAll('.d_btn').forEach(function (item) {
@@ -343,7 +408,7 @@
             });
         });
     }
-
+*/
     function discountPaginate() {
         const DiscountContemt = document.getElementById('DiscountContemt');
         document.querySelectorAll('.dis_link').forEach(function (item) {
