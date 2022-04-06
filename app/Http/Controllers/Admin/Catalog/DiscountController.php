@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin\Catalog;
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
 use App\Models\Category;
+use App\Models\Offer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class DiscountController extends Controller
 {
@@ -49,6 +51,7 @@ class DiscountController extends Controller
             'name' => 'required',
             'value' => 'required|integer',
         ],$messages);
+
         $discount = new Discount();
         $discount->name = $request->name;
         $discount->type = $request->type;
@@ -60,21 +63,38 @@ class DiscountController extends Controller
         $discount->save();
         switch ($request->kind) {
             case 'goods':
-                $products = Product::find($request->productsID);
-                $discount->product()->attach($products);
+                if($request->productsID){
+                    $products = Product::find($request->productsID);
+                    $discount->product()->attach($products);
+                }
+                if($request->offersID){
+                    $offers = Offer::find($request->offersID);
+                    $discount->offer()->attach($offers);
+                }
                 return redirect()->route('discounts.index')->with('success', 'Скидка '.$request->name.' создана');
                 break;
             case 'category':
                 $arrProductsId = [];
+                $arrOffersId = [];
                 foreach ($request->productsID as $item){
                     $DataCategories = Category::descendantsAndSelf($item);
                     $arrProductsId = array_merge($arrProductsId, Product::whereIn('category_id', $DataCategories->pluck('id'))->select('id')->get()->toArray());
                 }
                 $productsID =array_unique($arrProductsId, SORT_REGULAR);
                 $discount->product()->attach(Product::find($productsID));
+                if($productsID){
+                    $arrOffersId = DB::table('offers')->whereIn('id', $productsID)->select('id')->get()->toArray();
+                    $offersID =array_unique($arrOffersId, SORT_REGULAR);
+                    if($offersID){
+                        $discount->offer()->attach(Offer::find($offersID));
+                    }
+                }
                 return redirect()->route('discounts.index')->with('success', 'Скидка '.$request->name.' создана');
                 break;
         }
+
+
+        //dd($request->all());
     }
 
     /**
