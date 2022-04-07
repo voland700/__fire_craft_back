@@ -99,6 +99,11 @@
                                                 <li>{{$product->name}}<span class="d_id">({{$product->id}})</span><span class="d_btn-del" onclick="return RemoveElem(this);">×</span><input type="hidden" name="productsID[]" value="{{$product->id}}" class="d_input"></li>
                                             @endforeach
                                         @endif
+                                        @if(count($offers))
+                                            @foreach($offers as $offer)
+                                                <li><span class="d-offer_item">offer:</span>{{$offer->name}}<span class="d_id">({{$offer->id}})</span><span class="d_btn-del" onclick="return RemoveElem(this);">×</span><input type="hidden" name="offersID[]" value="{{$offer->id}}"></li>
+                                            @endforeach
+                                        @endif
                                         @if($categories)
                                             @foreach($categories as $category)
                                                 <li>{{$category->name}}<span class="d_id">({{$category->id}})</span><span class="d_btn-del" onclick="return RemoveElem(this);">×</span><input type="hidden" name="productsID[]" value="{{$category->id}}" class="d_input"></li>
@@ -266,7 +271,7 @@
                 GoodsList.append(li);
             }
 
-
+/*
             document.querySelectorAll('.d_btn').forEach(function (item) {
                 item.addEventListener('click', function(e){
                     let elem = e.currentTarget;
@@ -300,7 +305,7 @@
                 });
             });
         }
-
+*/
         function updateCategories(){
             document.getElementById('GoodsList').innerText = '';
             getCategories()

@@ -83,7 +83,7 @@ class DiscountController extends Controller
                 $productsID =array_unique($arrProductsId, SORT_REGULAR);
                 $discount->product()->attach(Product::find($productsID));
                 if($productsID){
-                    $arrOffersId = DB::table('offers')->whereIn('id', $productsID)->select('id')->get()->toArray();
+                    $arrOffersId = Offer::whereIn('product_id', $productsID)->select('id')->get()->toArray();
                     $offersID =array_unique($arrOffersId, SORT_REGULAR);
                     if($offersID){
                         $discount->offer()->attach(Offer::find($offersID));
@@ -116,12 +116,13 @@ class DiscountController extends Controller
      */
     public function edit($id)
     {
-        $discount = Discount::with('product')->find($id);
+        $discount = Discount::with('product', 'offer')->find($id);
         switch ($discount->kind) {
             case 'goods':
                 $categories = false;
                 $products = $discount->product;
-                return view('admin.catalog.discounts.update', compact('discount', 'products', 'categories'));
+                $offers = $discount->offer;
+                return view('admin.catalog.discounts.update', compact('discount', 'products', 'offers', 'categories'));
                 break;
             case 'category':
                 $products = [];
@@ -156,10 +157,15 @@ class DiscountController extends Controller
         switch ($request->kind) {
             case 'goods':
                 $productsID = [];
+                $offersID = [];
                 if($request->productsID) {
                     $productsID = array_map('intval', $request->productsID);
                 }
+                if($request->offersID) {
+                    $offersID= array_map('intval', $request->offersID);
+                }
                 $discount->product()->sync($productsID);
+                $discount->offer()->sync($offersID);
                 break;
             case 'category':
                 $productsID = [];
