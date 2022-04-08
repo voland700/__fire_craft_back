@@ -101,7 +101,7 @@
                                         @endif
                                         @if(count($offers))
                                             @foreach($offers as $offer)
-                                                <li><span class="d-offer_item">offer:</span>{{$offer->name}}<span class="d_id">({{$offer->id}})</span><span class="d_btn-del" onclick="return RemoveElem(this);">×</span><input type="hidden" name="offersID[]" value="{{$offer->id}}"></li>
+                                                <li><span class="d-offer_item">offer:</span>{{$offer->name}}<span class="d_id">({{$offer->id}})</span><span class="d_btn-del" onclick="return RemoveElem(this);">×</span><input type="hidden" name="offersID[]" value="{{$offer->id}}" class="d_offer_input"></li>
                                             @endforeach
                                         @endif
                                         @if($categories)
@@ -179,8 +179,13 @@
     function ChangeUpdateGoods(){
         let kind = document.getElementById('choiceGoods').value;
         let arrItemsId = [];
+        let arrOffersId = [];
+
         document.querySelectorAll('.d_input').forEach(function (item) {
             arrItemsId.push(Number(item.value));
+        });
+        document.querySelectorAll('.d_offer_input').forEach(function (item) {
+            arrOffersId.push(Number(item.value));
         });
         //console.log(arrItemsId);
         $.ajax(
@@ -191,6 +196,7 @@
                     _token: document.querySelector('meta[name=csrf-token]').content,
                     'kind': kind,
                     'items_id': arrItemsId,
+                    'offers_id': arrOffersId,
                 },
                 success: function (response) {
                     switch (kind) {
@@ -219,7 +225,7 @@
                     console.log(response);
                 }
             });
-
+        //menu categories 0pen/closed
         function choiceGoods() {
             document.querySelectorAll('.d_label').forEach(function (item) {
                 item.addEventListener('click', function(e){
@@ -245,9 +251,11 @@
             });
         }
 
+        //Переделать --- 
+
         function selectionGoodsUptate(){
             const GoodsList =document.getElementById('GoodsList');
-            function createElem(id, name){
+            function createElem(id, name, type){
                 let li = document.createElement("li");
                 let btn = document.createElement("span");
                 let namberId = document.createElement("span");
@@ -255,6 +263,8 @@
                 input.setAttribute('type', 'hidden');
                 input.setAttribute('name', `productsID[]`);
                 input.setAttribute('value', id);
+                if(type == 'product') input.setAttribute('name', `productsID[]`);
+                if(type == 'offer') input.setAttribute('name', `offersID[]`);
                 input.className = "d_input";
                 namberId.className = "d_id";
                 namberId.innerText = '['+id+']';
@@ -271,12 +281,13 @@
                 GoodsList.append(li);
             }
 
-/*
-            document.querySelectorAll('.d_btn').forEach(function (item) {
+
+            document.querySelectorAll('.d-link').forEach(function (item) {
                 item.addEventListener('click', function(e){
                     let elem = e.currentTarget;
                     let id = elem.getAttribute('data-id');
                     let name = elem.getAttribute('data-name');
+                    let type = elem.getAttribute('data-type');
 
 
                     if(elem.classList.contains('btn-default') && !elem.classList.contains('btn-success')){
@@ -284,7 +295,7 @@
                         elem.classList.add('btn-success');
                         if(!arrItemsId.includes(Number(id))){
                             arrItemsId.push(Number(id));
-                            createElem(id, name);
+                            createElem(id, name, type);
                             //console.log(arrItemsId);
                             //console.log(arrItemsId.includes(id))
                         }
@@ -304,8 +315,10 @@
                     }
                 });
             });
+
+
         }
-*/
+
         function updateCategories(){
             document.getElementById('GoodsList').innerText = '';
             getCategories()

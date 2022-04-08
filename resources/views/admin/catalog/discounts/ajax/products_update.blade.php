@@ -28,12 +28,12 @@
                     <tr>
                         <td>
                             @if(!count($product->offers))
-                                <span class="d-link d-product {{ (in_array($product->id, $items_id)) ? 'd-chosen' : ''}}" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-type="product">{{ $product->name }}</span> <span class="d-id">({{$product->id}})</span>
+                                <span class="d-product {{ (in_array($product->id, $items_id)) ? 'd-chosen' : 'd-link'}}" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-type="product">{{ $product->name }}</span> <span class="d-id">({{$product->id}})</span>
                             @else
                                 <span class="d-item">{{$product->name }}</span> <span class="d-id">({{$product->id}})</span>
                                 <ul class="d-offer-list">
                                     @foreach($product->offers as $offer)
-                                        <li><span class="d-link d-offer {{ (in_array($offer->id, $offers_id)) ? 'd-chosen' : ''}}" data-id="{{ $offer->id }}"  data-name="{{ $offer->name }}"  data-type="offer">{{ $offer->name }}</span> <span class="d-id">({{$offer->id}})</span></li>
+                                        <li><span class="d-offer {{ (in_array($offer->id, $offers_id)) ? 'd-chosen' : 'd-link'}}" data-id="{{ $offer->id }}"  data-name="{{ $offer->name }}"  data-type="offer">{{ $offer->name }}</span> <span class="d-id">({{$offer->id}})</span></li>
                                     @endforeach
                                 </ul>
                             @endif

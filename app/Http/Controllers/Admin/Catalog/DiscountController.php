@@ -253,13 +253,15 @@ class DiscountController extends Controller
     {
         $categories = Category::get()->toTree();
         $items_id = [];
+        $offers_id = [];
         $items_id = $request->items_id ? $request->items_id : [];
+        $offers_id = $request->offers_id ? $request->offers_id : [];
         switch ($request->kind) {
             case 'goods':
                 $products = Product::orderBy('sort', 'asc')->paginate(2);
                 $categoryId = 0;
                 $products->withPath('/admin/discounts_update_paginate');
-                return view('admin.catalog.discounts.ajax.products_update', compact('categoryId','categories', 'products', 'items_id'));
+                return view('admin.catalog.discounts.ajax.products_update', compact('categoryId','categories', 'products', 'items_id', 'offers_id'));
                 break;
             case 'category':
                 return view('admin.catalog.discounts.ajax.categories_update', compact('categories', 'items_id'));
