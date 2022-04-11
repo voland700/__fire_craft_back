@@ -83,3 +83,9 @@ Breadcrumbs::for('discounts.edit', function (BreadcrumbTrail $trail, \App\Models
     $trail->parent('discounts.index', $discount);
     $trail->push($discount->name, route('discounts.edit', $discount));
 });
+
+// Export to Excel
+Breadcrumbs::for('product.price.export.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('"Экспорт данных товаров', route('product.price.export.show'));
+});

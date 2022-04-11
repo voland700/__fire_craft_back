@@ -39,6 +39,39 @@
     </a>
 </li>
 
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-file-export"></i>
+        <p>
+            Экспорт в EXCEL
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+            <a href="{{route('product.price.export.show')}}" class="nav-link">
+                <i class="fas fa-tags nav-icon"></i>
+                <p>Экспорт цен товаров</p>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="far fa-arrow-alt-circle-down nav-icon"></i>
+                <p>Экспорт цен опций</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+
+
+
+
+
+
 <li class="nav-header">Контент</li>
 <li class="nav-item">
     <a href="{{route('slider.index')}}" class="nav-link">

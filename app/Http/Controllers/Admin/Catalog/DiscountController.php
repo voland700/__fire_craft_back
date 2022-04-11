@@ -126,8 +126,9 @@ class DiscountController extends Controller
                 break;
             case 'category':
                 $products = [];
+                $offers = [];
                 $categories = Category::select('id', 'name')->find(json_decode($discount->categories, true));
-                return view('admin.catalog.discounts.update', compact('discount', 'products', 'categories'));
+                return view('admin.catalog.discounts.update', compact('discount', 'products', 'offers', 'categories'));
                 break;
         }
     }
@@ -168,21 +169,26 @@ class DiscountController extends Controller
                 $discount->offer()->sync($offersID);
                 break;
             case 'category':
-                $productsID = [];
                 $arrProductsId = [];
-                if($request->productsID) {
+                $productsID = [];
+                $offersID = [];
+                if($request->productsID){
                     foreach ($request->productsID as $item){
                         $DataCategories = Category::descendantsAndSelf($item);
                         $arrProductsId = array_merge($arrProductsId, Product::whereIn('category_id', $DataCategories->pluck('id'))->select('id')->get()->toArray());
                     }
-                    $productsID =array_unique($arrProductsId, SORT_REGULAR);
+                }
+                $productsID =array_unique($arrProductsId, SORT_REGULAR);
+                if($productsID){
+                    $arrOffersId = Offer::whereIn('product_id', $productsID)->select('id')->get()->toArray();
+                    $offersID =array_unique($arrOffersId, SORT_REGULAR);
                 }
                 $discount->product()->sync(Arr::flatten($productsID));
+                $discount->offer()->sync(Arr::flatten($offersID));
                 break;
         }
         $discount->update($data);
         return redirect()->route('discounts.index')->with('success', 'Данные скидки обновлены');
-        //dd($productsID);
     }
 
     /**
@@ -193,7 +199,11 @@ class DiscountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discount = Discount::find($id);
+        $discount->product()->detach();
+        $discount->offer()->detach();
+        $discount->delete();
+        return redirect()->route('discounts.index')->with('success', 'Данные скидки удалены');
     }
 
     public function  choice_goods_create(Request $request)

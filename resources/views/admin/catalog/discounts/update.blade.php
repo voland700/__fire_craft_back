@@ -205,7 +205,7 @@
                             modalBody.innerHTML = response;
                             $('#modal-xl').modal('show');
                             choiceGoods();
-                            selectionGoodsUptate();
+                            selectionGoodsUpdate();
                             document.querySelectorAll('.d_update').forEach(function (item) {
                                 item.addEventListener('click', ChoiceGoodsCategoryUpdate);
                             });
@@ -251,9 +251,9 @@
             });
         }
 
-        //Переделать --- 
+        //Переделать ---
 
-        function selectionGoodsUptate(){
+        function selectionGoodsUpdate(){
             const GoodsList =document.getElementById('GoodsList');
             function createElem(id, name, type){
                 let li = document.createElement("li");
@@ -271,10 +271,16 @@
                 btn.className = "d_btn-del";
                 btn.innerText = '×';
                 btn.addEventListener('click', function(){
-                    arrItemsId.splice(arrItemsId.indexOf(id),1);
+                    if(type == 'product'){
+                        arrItemsId.splice(arrItemsId.indexOf(id),1);
+                    }
+                    if(type == 'offer'){
+                        arrOffersId.splice(arrOffersId.indexOf(id),1);
+                    }
                     this.parentNode.remove();
                 });
-                li.innerText = name;
+                if(type == 'product') li.innerText = name;
+                if(type == 'offer') li.innerHTML = '<span class="d-offer_item">offer:</span> '+name;
                 li.append(namberId);
                 li.append(btn);
                 li.append(input);
@@ -289,29 +295,24 @@
                     let name = elem.getAttribute('data-name');
                     let type = elem.getAttribute('data-type');
 
-
-                    if(elem.classList.contains('btn-default') && !elem.classList.contains('btn-success')){
-                        elem.classList.remove('btn-default');
-                        elem.classList.add('btn-success');
-                        if(!arrItemsId.includes(Number(id))){
-                            arrItemsId.push(Number(id));
-                            createElem(id, name, type);
-                            //console.log(arrItemsId);
-                            //console.log(arrItemsId.includes(id))
-                        }
-                        return false;
-                    }
-                    if(elem.classList.contains('btn-success') && !elem.classList.contains('btn-default')){
-                        elem.classList.remove('btn-success');
-                        elem.classList.add('btn-default');
-                        if(arrItemsId.includes(Number(id))){
-                            arrItemsId.splice(arrItemsId.indexOf(Number(id)),1);
-                            GoodsList.querySelectorAll('.d_input').forEach(function (item){
-                                if(item.value == id) item.parentNode.remove();
-                                return false;
-                            });
+                    if(elem.classList.contains('d-link') && !elem.classList.contains('d-active')) {
+                        elem.classList.toggle('d-link');
+                        elem.classList.toggle('d-active');
+                        if(type == 'product'){
+                            if(!arrItemsId.includes(Number(id))){
+                                arrItemsId.push(Number(id));
+                                createElem(id, name, type);
+                            }
                             return false;
                         }
+                        if(type == 'offer'){
+                            if(!arrOffersId.includes(Number(id))){
+                                arrOffersId.push(Number(id));
+                                createElem(id, name, type);
+                            }
+                            return false;
+                        }
+
                     }
                 });
             });

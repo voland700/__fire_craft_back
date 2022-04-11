@@ -107,6 +107,16 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/discounts_choice_categories_up', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'choice_categories_update'])->name('discounts.choice.categories.update');
     Route::post('/discounts_update_paginate', [\App\Http\Controllers\Admin\Catalog\DiscountController::class, 'update_paginate'])->name('discounts.update.paginate');
+
+    //Export Data
+    Route::get('/product-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'productsPriceExportShow'])->name('product.price.export.show');
+    Route::post('/product-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'productsPriceExport'])->name('product.price.export');
+
+
+
+
+
+
 });
 
 

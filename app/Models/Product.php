@@ -109,6 +109,13 @@ class Product extends Model
     }
 
     //Accessors
+
+    public function getKindAttribute()
+    {
+        return (!$this->offers()) ? 'Товар' : 'Предложания';
+    }
+
+
     public function getMiniatureAttribute()
     {
         return (!$this->thumbnail==NULL) ? $this->thumbnail : '/images/src/no-photo/no-photo_thamb.jpg';
