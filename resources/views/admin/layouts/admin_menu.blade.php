@@ -57,7 +57,7 @@
     </ul>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('offer.price.export.show')}}" class="nav-link">
                 <i class="far fa-arrow-alt-circle-down nav-icon"></i>
                 <p>Экспорт цен опций</p>
             </a>

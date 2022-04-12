@@ -89,3 +89,7 @@ Breadcrumbs::for('product.price.export.show', function (BreadcrumbTrail $trail) 
     $trail->parent('admin.index');
     $trail->push('"Экспорт данных товаров', route('product.price.export.show'));
 });
+Breadcrumbs::for('offer.price.export.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('"Экспорт данных опций', route('offer.price.export.show'));
+});

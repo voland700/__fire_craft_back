@@ -47,7 +47,7 @@ class PriceProductExport implements FromArray, WithMapping, WithHeadings
             $products['art_number'],
             $products['base_price'],
             $products['currency'],
-            $products['type'] => $products->offers ? 'Предложения' : 'Товар'
+            $products['kind']
         ];
     }
 }

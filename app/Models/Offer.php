@@ -14,9 +14,11 @@ class Offer extends Model
         'product_id',
         'color_id',
         'active',
+        'hit',
+        'new',
+        'stock',
+        'advice',
         'sort',
-        'diameter',
-        'steel',
         'number',
         'img',
         'preview',
@@ -25,6 +27,7 @@ class Offer extends Model
         'price',
         'currency'
     ];
+    protected $appends = ['color_name'];
 
     public function product()
     {
@@ -65,6 +68,22 @@ class Offer extends Model
     {
         return (!$this->preview==NULL) ? $this->preview : '/images/src/no-photo/no-photo_small.jpg';
     }
+
+
+    public function getProductNameAttribute()
+    {
+        return $this->product->name;
+    }
+
+    public function getColorNameAttribute()
+    {
+        return $this->color->name;
+    }
+
+
+
+
+
 
     //Observer
     protected static function boot() {

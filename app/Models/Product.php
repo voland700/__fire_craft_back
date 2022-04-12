@@ -39,6 +39,7 @@ class Product extends Model
         'properties',
         'accessory'
     ];
+    protected $appends = ['kind'];
 
     public function getSlugOptions() : SlugOptions
     {
@@ -112,9 +113,8 @@ class Product extends Model
 
     public function getKindAttribute()
     {
-        return (!$this->offers()) ? 'Товар' : 'Предложания';
+        return $this->offers->isEmpty() ? 'Товар' : 'Предложания';
     }
-
 
     public function getMiniatureAttribute()
     {

@@ -112,6 +112,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/product-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'productsPriceExportShow'])->name('product.price.export.show');
     Route::post('/product-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'productsPriceExport'])->name('product.price.export');
 
+    Route::get('/offer-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'offersPriceExportShow'])->name('offer.price.export.show');
+    Route::post('/offer-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'offersPriceExport'])->name('offer.price.export');
 
 
 
