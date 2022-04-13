@@ -64,6 +64,44 @@
         </li>
     </ul>
 </li>
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-file-import"></i>
+        <p>
+            Импорт из EXCEL
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+            <a href="{{route('product.import.show')}}" class="nav-link">
+                <i class="nav-icon fas fa-download"></i>
+                <p>Импорт товаров</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-arrow-alt-circle-down"></i>
+                <p>Обновление цен</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{route('offer.import.show')}}" class="nav-link">
+                <i class="nav-icon far fa-arrow-alt-circle-down"></i>
+                <p>Импорт опций</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-down"></i>
+                <p>Обновление опций</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
 
 
 
@@ -83,5 +121,12 @@
     <a href="{{route('document.index')}}" class="nav-link">
         <i class="nav-icon fas fa-paste"></i>
         <p>Документы</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{route('region.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-map-marked-alt"></i>
+        <p>Регионы</p>
     </a>
 </li>

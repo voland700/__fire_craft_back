@@ -31,6 +31,9 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Events\AfterImport;
+//use Intervention\Image\ImageManagerStatic as Image;
+
+
 
 
 
@@ -87,6 +90,8 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                 $data['properties'] = NULL;
             }
 
+
+
             if( $row['img']) {
                 if (Storage::disk('public')->exists($row['img'])){
                     $ext = pathinfo(storage_path().$row['img'], PATHINFO_EXTENSION);
@@ -95,10 +100,12 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                     $path_to = '/images/' . getfolderName();
                     $pathBig = Storage::disk('public')->putFileAs($path_to, new File('storage'.$row['img']), $fileBigName);
                     $pathSmall = Storage::disk('public')->putFileAs($path_to, new File('storage'.$row['img']), $fileSmallName);
-                    Image::make(storage_path('app/public'.$pathSmall))->fit(100, 100)->save();
+                    \Intervention\Image\ImageManagerStatic::make(storage_path('app/public/'.$pathSmall))->fit(100, 100)->save();
+
                     $data['img'] = 'storage/' . $pathBig;
                     $data['thumbnail'] = 'storage/' . $pathSmall;
                 }
+
             } else {
                 $data['img'] = NULL;
                 $data['thumbnail'] = NULL;
@@ -110,7 +117,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                     $filePrevName = 'small_'.time() . '_' . Str::lower(Str::random(2)) . '.' . $ext;
                     $path_to = '/images/' . getfolderName();
                     $pathPrev = Storage::disk('public')->putFileAs($path_to, new File('storage'.$row['preview']), $filePrevName);
-                    Image::make(storage_path('app/public'.$pathPrev))->resize(350, null, function ($constraint) {
+                    \Intervention\Image\ImageManagerStatic::make(storage_path('app/public/'. $pathPrev))->resize(350, null, function ($constraint) {
                         $constraint->aspectRatio();
                     })->save();
                     $data['preview'] = 'storage/' . $pathPrev;
@@ -130,11 +137,9 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                         $fileBigName = 'big_' . $fileName;
                         $fileSmallName = 'small_' . $fileName;
                         $path_to = '/images/' . getfolderName();
-                        $pathBig = Storage::disk('public')->putFileAs($path_to, new File('storage'.$image), $fileBigName);
-                        $pathSmall = Storage::disk('public')->putFileAs($path_to, new File('storage'.$image), $fileSmallName);
-                        ImageManagerStatic::make(storage_path('app/public' . $path_to . '/' . $fileSmallName))->resize(100, 100, function ($constraint) {
-                            $constraint->aspectRatio();
-                        })->save();
+                        $pathBig = Storage::disk('public')->putFileAs($path_to, new File('storage/'.$image), $fileBigName);
+                        $pathSmall = Storage::disk('public')->putFileAs($path_to, new File('storage/'.$image), $fileSmallName);
+                        \Intervention\Image\ImageManagerStatic::make(storage_path('app/public' . $path_to . '/' . $fileSmallName))->fit(100, 100)->save();
                         Image::create([
                             'product_id' => $product->id,
                             'img' => 'storage/' . $pathBig,
@@ -152,6 +157,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                 }
                 $product->documents()->attach($arrID);
             }
+
         }
 
     }

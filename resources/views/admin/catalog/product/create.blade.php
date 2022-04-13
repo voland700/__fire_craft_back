@@ -300,7 +300,7 @@
 
 
                 <div class="form-group">
-                    <label for="meta_keywords">META Title</label>
+                    <label for="meta_keywords">META Keywords</label>
                     <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" value="{{ old('meta_keywords') }}" placeholder="Ключевые слова...">
                 </div>
 

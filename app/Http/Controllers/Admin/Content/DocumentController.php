@@ -98,7 +98,7 @@ class DocumentController extends Controller
             $data['file']='storage'.$path_to.'/'.$fileName;
         }
         $document->update($data);
-        return redirect()->route('documents.index')->with('success', 'Данные обновлены');
+        return redirect()->route('document.index')->with('success', 'Данные обновлены');
     }
 
     /**

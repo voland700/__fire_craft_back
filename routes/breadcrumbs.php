@@ -84,6 +84,20 @@ Breadcrumbs::for('discounts.edit', function (BreadcrumbTrail $trail, \App\Models
     $trail->push($discount->name, route('discounts.edit', $discount));
 });
 
+// Regions
+Breadcrumbs::for('region.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Регионы', route('region.index'));
+});
+Breadcrumbs::for('region.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('region.index');
+    $trail->push('Добавление региона', route('region.create'));
+});
+Breadcrumbs::for('region.edit', function (BreadcrumbTrail $trail, \App\Models\Region $region) {
+    $trail->parent('region.index', $region);
+    $trail->push($region->name, route('region.edit', $region));
+});
+
 // Export to Excel
 Breadcrumbs::for('product.price.export.show', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.index');
@@ -93,3 +107,14 @@ Breadcrumbs::for('offer.price.export.show', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.index');
     $trail->push('"Экспорт данных опций', route('offer.price.export.show'));
 });
+Breadcrumbs::for('product.import.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Импорт товаров', route('product.import.show'));
+});
+Breadcrumbs::for('offer.import.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Импорт опций товаров', route('offer.import.show'));
+});
+
+
+

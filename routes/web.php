@@ -115,9 +115,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/offer-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'offersPriceExportShow'])->name('offer.price.export.show');
     Route::post('/offer-price-export', [\App\Http\Controllers\Admin\Catalog\ExportController::class, 'offersPriceExport'])->name('offer.price.export');
 
+    Route::get('/product-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'productsImportShow'])->name('product.import.show');
+    Route::post('/product-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'productsImport'])->name('product.import');
+
+    Route::get('/offer-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'offersImportShow'])->name('offer.import.show');
+    Route::post('/offer-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'offersImport'])->name('offer.import');
 
 
 
+
+
+    Route::resource('/region', \App\Http\Controllers\Admin\Content\RegionController::class);
 
 });
 
