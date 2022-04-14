@@ -224,8 +224,6 @@ class DiscountController extends Controller
     }
 
 
-
-
     public function choice_categories(Request $request){
         $id = $request->id;
 
@@ -235,16 +233,6 @@ class DiscountController extends Controller
         $products->withPath('/admin/discounts_create_paginate');
         return view('admin.catalog.discounts.ajax.products_choice', compact('products', 'categoryId'));
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public function create_paginate(Request $request){

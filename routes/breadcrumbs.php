@@ -98,6 +98,21 @@ Breadcrumbs::for('region.edit', function (BreadcrumbTrail $trail, \App\Models\Re
     $trail->push($region->name, route('region.edit', $region));
 });
 
+// Dealers
+Breadcrumbs::for('dealer.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Дилеры', route('dealer.index'));
+});
+Breadcrumbs::for('dealer.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dealer.index');
+    $trail->push('Добавление дилера', route('dealer.create'));
+});
+Breadcrumbs::for('dealer.edit', function (BreadcrumbTrail $trail, \App\Models\Dealer $dealer) {
+    $trail->parent('dealer.index', $dealer);
+    $trail->push($dealer->name, route('dealer.edit', $dealer));
+});
+
+
 // Export to Excel
 Breadcrumbs::for('product.price.export.show', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.index');

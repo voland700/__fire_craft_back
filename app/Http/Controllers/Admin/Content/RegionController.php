@@ -15,6 +15,8 @@ class RegionController extends Controller
     {
         $regions = Region::paginate(40);
         return view('admin.content.region.index', compact('regions'));
+
+
     }
 
     public function create()

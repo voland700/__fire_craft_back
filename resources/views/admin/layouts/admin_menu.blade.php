@@ -102,14 +102,6 @@
     </ul>
 </li>
 
-
-
-
-
-
-
-
-
 <li class="nav-header">Контент</li>
 <li class="nav-item">
     <a href="{{route('slider.index')}}" class="nav-link">
@@ -128,5 +120,11 @@
     <a href="{{route('region.index')}}" class="nav-link">
         <i class="nav-icon fas fa-map-marked-alt"></i>
         <p>Регионы</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{route('dealer.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-handshake"></i>
+        <p>Партнеры</p>
     </a>
 </li>

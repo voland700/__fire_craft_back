@@ -13,6 +13,8 @@ class Dealer extends Model
     protected $fillable = [
         'name',
         'slug',
+        'sort',
+        'active',
         'region_id',
         'mail',
         'address',
@@ -25,6 +27,7 @@ class Dealer extends Model
         'meta_keywords',
         'meta_description'
     ];
+    //protected $appends = ['region'];
 
     public function getSlugOptions() : SlugOptions
     {
@@ -34,8 +37,14 @@ class Dealer extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function product()
+    public function region()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Region::class);
     }
+    /*
+    public function getRegionAttribute()
+    {
+        return $this->region->name;
+    }
+    */
 }

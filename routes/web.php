@@ -126,6 +126,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::resource('/region', \App\Http\Controllers\Admin\Content\RegionController::class);
+    Route::resource('/dealer', \App\Http\Controllers\Admin\Content\DealerController::class);
 
 });
 
