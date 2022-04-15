@@ -47,7 +47,7 @@ class OffersImport  implements ToCollection, WithHeadingRow, WithValidation, Ski
 
     public function __construct()
     {
-        $this->color = Color::select('id')->get()->toArray();
+        $this->color = Color::select('id')->get()->pluck('id')->toArray();
         $this->currencies = Currency::select('currency', 'Nominal', 'value')->get();
     }
 
@@ -55,7 +55,13 @@ class OffersImport  implements ToCollection, WithHeadingRow, WithValidation, Ski
     {
         foreach ($rows as $row){
 
+
             if($product = Product::where('id', $row['product_id'])->select('id', 'name')->first()) {
+
+
+
+
+
                 if($row['name']) {
                     $data['name'] = $row['name'];
                 }else{
@@ -63,9 +69,12 @@ class OffersImport  implements ToCollection, WithHeadingRow, WithValidation, Ski
                 }
 
                 $data['product_id'] = $row['product_id'];
+
+
                 if(in_array($row['color_id'], $this->color)) {
                     $data['color_id'] = $row['color_id'];
                 } else {
+                    //dd($this->color);
                     return false;
                 }
                 $data['active'] = $row['active'] ? 1 : 0;
@@ -83,6 +92,9 @@ class OffersImport  implements ToCollection, WithHeadingRow, WithValidation, Ski
                 } else {
                     $data['price'] = $data['base_price'];
                 }
+
+
+
                 if( $row['img']) {
                     if (Storage::disk('public')->exists($row['img'])){
                         $ext = pathinfo(storage_path().$row['img'], PATHINFO_EXTENSION);
@@ -131,14 +143,20 @@ class OffersImport  implements ToCollection, WithHeadingRow, WithValidation, Ski
                             $pathSmall = Storage::disk('public')->putFileAs($path_to, new File('storage/'.$image), $fileSmallName);
                             \Intervention\Image\ImageManagerStatic::make(storage_path('app/public' . $path_to . '/' . $fileSmallName))->fit(100, 100)->save();
                             Photo::create([
-                                'product_id' => $offer->id,
+                                'offer_id' => $offer->id,
                                 'img' => 'storage/' . $pathBig,
                                 'thumbnail' => 'storage/' . $pathSmall
                             ]);
                         }
                     }
                 }
+
+
             }
+
+
+
+
 
         }
 
