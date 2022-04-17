@@ -22,7 +22,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <a href="{{route('offer.create', $product->id)}}" type="button" class="btn btn-primary mb-3">Добавить</a>
+                <a href="{{route('offer.create', $product->id)}}" type="button" class="btn btn-primary mb-3  mr-1">Добавить</a>
+                <a href="{{route('product.edit', $product->id)}}" type="button" class="btn btn-primary mb-3">Товар</a>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
