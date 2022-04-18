@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [App\Http\Controllers\Front\IndexController::class, 'index'])->name('index');
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -120,10 +124,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/offer-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'offersImportShow'])->name('offer.import.show');
     Route::post('/offer-import', [\App\Http\Controllers\Admin\Catalog\ImportController::class, 'offersImport'])->name('offer.import');
-
-
-
-
 
     Route::resource('/region', \App\Http\Controllers\Admin\Content\RegionController::class);
     Route::resource('/dealer', \App\Http\Controllers\Admin\Content\DealerController::class);

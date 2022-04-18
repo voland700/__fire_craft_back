@@ -26,7 +26,7 @@
         @endif
     </div>
 
-    <div id="create" role="form" method="post" action="{{ route('category.store') }}">
+    <form id="create" role="form" method="post" action="{{ route('category.store') }}">
         @csrf
         <div class="row">
 
@@ -176,11 +176,12 @@
 
         </div><!-- /.END ROW -->
 
-
-
         <button type="submit" class="btn btn-primary mt-3 mb-3">Применить</button>
 
     </form>
+
+
+
 @endsection
 
 @section('scripts')
@@ -270,4 +271,4 @@
             }
         }
     </script>
-@endsectionтфьу
+@endsection

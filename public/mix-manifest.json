@@ -53,5 +53,18 @@
     "/assets/admin/css/font/summernote.ttf": "/assets/admin/css/font/summernote.ttf",
     "/assets/admin/css/font/summernote.woff": "/assets/admin/css/font/summernote.woff",
     "/assets/admin/css/font/summernote.woff2": "/assets/admin/css/font/summernote.woff2",
-    "/assets/admin/js/dropzone.min.js": "/assets/admin/js/dropzone.min.js"
+    "/assets/admin/js/dropzone.min.js": "/assets/admin/js/dropzone.min.js",
+    "/css/main.css": "/css/main.css",
+    "/js/main.js": "/js/main.js",
+    "/js/map.js": "/js/map.js",
+    "/fonts/roboto-condensed-v24-latin-300.woff2": "/fonts/roboto-condensed-v24-latin-300.woff2",
+    "/fonts/roboto-condensed-v24-latin-300italic.woff2": "/fonts/roboto-condensed-v24-latin-300italic.woff2",
+    "/fonts/roboto-condensed-v24-latin-700.woff2": "/fonts/roboto-condensed-v24-latin-700.woff2",
+    "/fonts/roboto-condensed-v24-latin-700italic.woff2": "/fonts/roboto-condensed-v24-latin-700italic.woff2",
+    "/fonts/roboto-condensed-v24-latin-italic.woff2": "/fonts/roboto-condensed-v24-latin-italic.woff2",
+    "/fonts/roboto-condensed-v24-latin-regular.woff2": "/fonts/roboto-condensed-v24-latin-regular.woff2",
+    "/fonts/Roboto-Medium.woff2": "/fonts/Roboto-Medium.woff2",
+    "/fonts/Roboto-MediumItalic.woff2": "/fonts/Roboto-MediumItalic.woff2",
+    "/images/src/logo.png": "/images/src/logo.png",
+    "/js/vue.global.prod.js": "/js/vue.global.prod.js"
 }
