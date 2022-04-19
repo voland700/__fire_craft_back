@@ -115,9 +115,11 @@
         </div>
         <div class="footer_slider swiper animated-scrol fadeInUp2" id="bottomSlider">
             <div class="swiper-wrapper footer_slider_wrap">
+                <!--
                 <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_1.jpg)"></div>
                 <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_2.jpg)"></div>
                 <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_3.jpg)"></div>
+                -->
             </div>
             <div class="swiper-pagination"></div>
 
@@ -247,6 +249,7 @@
 </div>
 
 <script src="/js/main.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 </html>

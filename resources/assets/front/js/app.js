@@ -261,14 +261,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	/** Вызов модального окна формы обратной связи*/
-	document.getElementById('modalShow').addEventListener('click', function() {
-		$.fancybox.open({
-			src: '#modal',
-			type: 'inline'
-		});
-		getAnswer();
-	});
-
+	if(document.getElementById('modalShow')){
+        document.getElementById('modalShow').addEventListener('click', function() {
+            $.fancybox.open({
+                src: '#modal',
+                type: 'inline'
+            });
+            getAnswer();
+        });
+    }
 
 	function getAnswer() {
 		let modalForm = document.getElementById('modalForm');

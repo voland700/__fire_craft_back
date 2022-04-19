@@ -27,7 +27,7 @@ class Offer extends Model
         'price',
         'currency'
     ];
-    protected $appends = ['color_name'];
+    protected $appends = ['color_name', 'color_file'];
 
     public function product()
     {
@@ -80,10 +80,10 @@ class Offer extends Model
         return $this->color->name;
     }
 
-
-
-
-
+    public function getColorFileAttribute()
+    {
+        return $this->color->file;
+    }
 
     //Observer
     protected static function boot() {

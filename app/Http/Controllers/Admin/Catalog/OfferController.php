@@ -129,6 +129,7 @@ class OfferController extends Controller
         $data['hit'] = $request->has('hit') ? 1 : 0;
         $data['new'] = $request->has('new') ? 1 : 0;
         $data['stock'] = $request->has('stock') ? 1 : 0;
+        $data['advice'] = $request->has('advice') ? 1 : 0;
 
         $data['currency'] = $request->currency;
         if($request->base_price != NULL) {

@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Front\IndexController::class, 'index'])->name('index');
 
+Route::get('/catalog', [App\Http\Controllers\Front\CatalogController::class, 'index'])->name('catalog.index');
+Route::get('/catalog/category/{slug}', [App\Http\Controllers\Front\CatalogController::class, 'category'])->name('catalog.category');
+Route::get('/catalog/product/{slug}', [App\Http\Controllers\Front\CatalogController::class, 'product'])->name('catalog.product');
+Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
+Route::post('/get-offer-list', [App\Http\Controllers\Front\CatalogController::class, 'getOfferList'])->name('get_offer_list');
+
+
+
 
 
 
@@ -46,6 +54,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/slider-img-upload',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgUpload'])->name('slider.img.upload');
     Route::post('/slider-img-update',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgUpdate'])->name('slider.img.update');
     Route::post('/slider-img-update-remove',[\App\Http\Controllers\Admin\Content\SliderController::class, 'imgRemoveForUpdate'])->name('slider.img.remove');
+
+    Route::resource('/gallery', \App\Http\Controllers\Admin\Content\GalleryController::class);
+    Route::post('/gallery-img-upload',[\App\Http\Controllers\Admin\Content\GalleryController::class, 'imgUpload'])->name('gallery.img.upload');
+    Route::post('/gallery-img-update',[\App\Http\Controllers\Admin\Content\GalleryController::class, 'imgUpdate'])->name('gallery.img.update');
+    Route::post('/gallery-img-update-remove',[\App\Http\Controllers\Admin\Content\GalleryController::class, 'imgRemoveForUpdate'])->name('gallery.img.remove');
 
     Route::resource('/document', \App\Http\Controllers\Admin\Content\DocumentController::class);
 

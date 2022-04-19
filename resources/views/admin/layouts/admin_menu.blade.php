@@ -106,9 +106,17 @@
 <li class="nav-item">
     <a href="{{route('slider.index')}}" class="nav-link">
         <i class="nav-icon far fa-image"></i>
-        <p>Слайдер</p>
+        <p>Слайдер Top</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{route('gallery.index')}}" class="nav-link">
+        <i class="nav-icon far fa-images"></i>
+        <p>Слайдер Bottom</p>
+    </a>
+</li>
+
 <li class="nav-item">
     <a href="{{route('document.index')}}" class="nav-link">
         <i class="nav-icon fas fa-paste"></i>

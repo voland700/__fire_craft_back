@@ -64,5 +64,4 @@ mix.scripts([
 mix.copyDirectory('resources/assets/front/js/map.js', 'public/js');
 mix.copyDirectory('resources/assets/front/fonts', 'public/fonts');
 mix.copyDirectory('resources/assets/front/images/src', 'public/images/src');
-
 mix.copy('resources/assets/front/js/vue.global.prod.js', 'public/js/vue.global.prod.js');
