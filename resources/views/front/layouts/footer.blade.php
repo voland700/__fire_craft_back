@@ -111,22 +111,9 @@
         <div class="footer_info">
             <h3 class="footer_info_title">Найди вдохновение</h3>
             <p class="footer_info_txt">У нас самый большой выбор дровяных печей и каминов, которые подходят к абсолютно разным интерьерам. Мы собрали здесь несколько примеров, чтобы показать как наши продукты выглядят в современном доме. Печи соответсвуют всем современны тебованиям: экологичности и безопасности, являются высокоэффектиным отопительным прибором и красивым предметом интеьера. Мы уверенны что форма должна следовать за функционалом.		</p>
-            <a href="#" class="why_item_link">Посмотреть все изделия</a>
+            <a href="{{route('catalog.index')}}" class="why_item_link">Посмотреть все изделия</a>
         </div>
-        <div class="footer_slider swiper animated-scrol fadeInUp2" id="bottomSlider">
-            <div class="swiper-wrapper footer_slider_wrap">
-                <!--
-                <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_1.jpg)"></div>
-                <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_2.jpg)"></div>
-                <div class="swiper-slide footer_slider_item" style="background-image: url(/images/src/slider/b_3.jpg)"></div>
-                -->
-            </div>
-            <div class="swiper-pagination"></div>
-
-            <div class="button-prev">‹</div>
-            <div class="button-next">›</div>
-
-        </div>
+        @include('front.layouts.footer_slider')
     </div>
     <div class="footer-bottom-wrap">
         <div class="footer-bottom">

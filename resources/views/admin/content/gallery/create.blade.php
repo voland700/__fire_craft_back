@@ -21,8 +21,8 @@
             </div>
         @endif
     </div>
-    <form id="createForm" role="form" method="post" action="{{ route('gallery.create') }}" enctype="multipart/form-data">
-        @csrf
+    <form id="createForm" role="form" method="post" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
+    @csrf
     <div class="col-md-6">
         <!-- Default box -->
         <div class="card">

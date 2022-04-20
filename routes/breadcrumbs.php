@@ -133,3 +133,35 @@ Breadcrumbs::for('offer.import.show', function (BreadcrumbTrail $trail) {
 
 
 
+
+//FRONT
+Breadcrumbs::for('index', function ($trail) {
+    $trail->push('Главная старница', route('index'));
+});
+
+// - CATALOG - index
+Breadcrumbs::for('catalog.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Каталог', route('catalog.index'));
+});
+// - CATALOG - categories
+Breadcrumbs::for('catalog.category', function (BreadcrumbTrail $trail, App\Models\Category $category) {
+    $trail->parent('index');
+    $trail->push('Каталог', route('catalog.index'));
+
+    foreach ($category->ancestors as $ancestor) {
+        $trail->push($ancestor->name, route('catalog.category', $ancestor->slug));
+    }
+    $trail->push($category->name, route('catalog.category', $category));
+});
+// - CATALOG - product
+Breadcrumbs::for('catalog.product', function (BreadcrumbTrail $trail, App\Models\Category $category, App\Models\Product $product) {
+    $trail->parent('index');
+    $trail->push('Каталог', route('catalog.index'));
+    foreach ($category->ancestors as $ancestor) {
+        $trail->push($ancestor->name, route('catalog.category', $ancestor->slug));
+    }
+    $trail->push($category->name, route('catalog.category', $category->slug));
+    $trail->push($product->name, route('catalog.product', $product));
+});
+

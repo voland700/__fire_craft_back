@@ -50,6 +50,11 @@ class Category extends Model
     {
         return (!$this->img==NULL) ? $this->img : '/images/src/no-photo/no-photo_300.jpg';
     }
+    public function getThumbAttribute()
+    {
+        return (!$this->thumbnail==NULL) ? $this->img : '/images/src/no-photo/no-photo_300.jpg';
+    }
+
 
     public function getTitleAttribute()
     {

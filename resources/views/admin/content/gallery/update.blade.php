@@ -103,7 +103,7 @@
                 addRemoveLinks: true,
                 timeout: 60000,
                 params: {
-                    id: {{$slide->id}}
+                    id: {{$gallery->id}}
                 },
                 @if(count($img)>0)
                 init: function () {
@@ -137,7 +137,7 @@
                     data: {
                         _token: document.querySelector('meta[name=csrf-token]').content,
                         path: path,
-                        id: {{$slide->id}},
+                        id: {{$gallery->id}},
                     },
                     success: function (response) {
                         //console.log(response.success);

@@ -73,7 +73,7 @@
     <div class="header_search">
         <div class="container header_search_wrap">
             <div class="header_search_btn_wrap">
-                <a href="#" class="header_search_btn">Каталог</a>
+                <a href="{{route('catalog.index')}}" class="header_search_btn">Каталог</a>
                 <a href="#" class="header_search_btn">Где купить</a>
             </div>
             <form action="#" method="get" class="search_form">

@@ -181,14 +181,5 @@
             </div>
         </section>
     @endif
-
-
-
-
-
-
-
-
-
 @endsection
 

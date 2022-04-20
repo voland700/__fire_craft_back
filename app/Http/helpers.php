@@ -57,3 +57,20 @@ if (! function_exists('getPrice')) {
         $item->percent = $cost['percent'];
     }
 }
+
+if (! function_exists('addDataPrice')) {
+    function addDataPrice($collection){
+        if($collection->isNotEmpty()){
+            $collection->each(function ($item) {
+                if(!$item->offers->isEmpty()){
+                    $item->offers->each(function ($itemOffer){
+                        $itemOffer = getPrice($itemOffer);
+                    });
+                }
+                $item = getPrice($item);
+                return $item;
+            });
+        }
+    }
+}
+
