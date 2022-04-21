@@ -14,7 +14,7 @@ class CatalogController extends Controller
     {
         $categories = Category::where([['active', '=', 1], ['parent_id', '=', null]])->orderBy('sort')->select('id', 'active', 'name', 'slug', 'sort', 'img', 'thumbnail')->get();
         $products = Product::with('discount', 'offers')->where('active', 1)->orderBy('sort')->paginate(24);
-        addDataPrice($products);
+        addDataPriceAll($products);
         return view('front.catalog.index', compact( 'categories', 'products'));
     }
 
@@ -25,7 +25,7 @@ class CatalogController extends Controller
         $categoriesId = $category->descendants()->pluck('id');
         $categoriesId[] = $category->getKey();
         $products = Product::with('discount', 'offers')->whereIn('category_id', $categoriesId)->where('active', 1)->orderBy('sort')->paginate(24);
-        addDataPrice($products);
+        addDataPriceAll($products);
         return view('front.catalog.category', compact( 'categories', 'category','products'));
     }
 
@@ -36,16 +36,15 @@ class CatalogController extends Controller
         if($product->properties){
             $product->properties = json_decode($product->properties);
         }
-        getPrice($product);
+        addDataPriceItem($product);
+
         if($product->offers->isEmpty()){
             $offer = null;
         }else{
             $offer = $product->offers->sortBy('sort')->first();
-            getPrice($offer);
-
-
+            //getPrice($offer);
         }
-        //dd($offer);
+        dd($product->documents);
         return view('front.catalog.product', compact('product', 'category', 'offer'));
 
 

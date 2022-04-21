@@ -58,8 +58,8 @@ if (! function_exists('getPrice')) {
     }
 }
 
-if (! function_exists('addDataPrice')) {
-    function addDataPrice($collection){
+if (! function_exists('addDataPriceAll')) {
+    function addDataPriceAll($collection){
         if($collection->isNotEmpty()){
             $collection->each(function ($item) {
                 if(!$item->offers->isEmpty()){
@@ -70,6 +70,19 @@ if (! function_exists('addDataPrice')) {
                 $item = getPrice($item);
                 return $item;
             });
+        }
+    }
+}
+
+if (! function_exists('addDataPriceItem')) {
+    function addDataPriceItem($item){
+        if($item){
+            getPrice($item);
+            if(!$item->offers->isEmpty()){
+                $item->offers->each(function ($itemOffer){
+                    getPrice($itemOffer);
+                });
+            }
         }
     }
 }

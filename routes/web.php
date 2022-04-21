@@ -23,7 +23,7 @@ Route::get('/catalog/product/{slug}', [App\Http\Controllers\Front\CatalogControl
 Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
 Route::post('/get-offer-list', [App\Http\Controllers\Front\CatalogController::class, 'getOfferList'])->name('get_offer_list');
 
-
+Route::get('/partners', [App\Http\Controllers\Front\PartnerController::class, 'index'])->name('partner.index');
 
 
 
