@@ -2,6 +2,7 @@
 // import '~/app/libs/mmenu/dist/mmenu.js'
 //import '~/app/js/jquery.min.js'
 document.addEventListener('DOMContentLoaded', () => {
+
     //function for POST fetch request
     async function getProduct(url = '', data = {}) {
         // Default options are marked with *
@@ -18,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return await response.text(); // parses JSON response into native JavaScript objects
     }
-
-
 
 
 	document.getElementById('navBtn').addEventListener('click', (e)=>{
@@ -130,62 +129,73 @@ document.addEventListener('DOMContentLoaded', () => {
 		return false;
 	});
 
-	//Prodact gallery
-	if(document.getElementById('ImagesSlider')){
+	//Product gallery
+    function showGallery(){
+        let galery = new Swiper("#ImagesSlider", {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            //slidesPerGroup: 1,
+            //centerInsufficientSlides: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: "#ImagesSliderPrev",
+                prevEl: "#ImagesSliderNext",
+            },
+        });
 
-		let galery = new Swiper("#ImagesSlider", {
-			slidesPerView: 4,
-			spaceBetween: 10,
-			//slidesPerGroup: 1,
-			//centerInsufficientSlides: true,
-			pagination: {
-				el: ".swiper-pagination",
-				clickable: true,
-			},
-			navigation: {
-				nextEl: "#ImagesSliderPrev",
-				prevEl: "#ImagesSliderNext",
-			},
-		});
+        if(galery.slides.length <= galery.params.slidesPerView){
+            document.getElementById('ImagesSliderPrev').style.display = 'none';
+            document.getElementById('ImagesSliderNext').style.display = 'none';
+            //document.getElementById('ImagesSlider').style.width = '100%';
+        }
 
-		if(galery.slides.length <= galery.params.slidesPerView){
-			document.getElementById('ImagesSliderPrev').style.display = 'none';
-			document.getElementById('ImagesSliderNext').style.display = 'none';
-			//document.getElementById('ImagesSlider').style.width = '100%';
-		}
+        let mainImg = document.getElementById('mainImg');
 
-		let mainImg = document.getElementById('mainImg');
+        let prevLinks = document.querySelectorAll('.product_prev_link').forEach(function(elem){
+            elem.addEventListener('click', function(item){
+                item.preventDefault();
+                let pathImg = item.target.parentNode.getAttribute('href');
+                mainImg.setAttribute('src', pathImg);
 
-		let prevLinks = document.querySelectorAll('.product_prev_link').forEach(function(elem){
-			elem.addEventListener('click', function(item){
-				item.preventDefault();
-				let pathImg = item.target.parentNode.getAttribute('href');
-				mainImg.setAttribute('src', pathImg);
+                let parent = item.target.parentNode.parentNode;
+                document.querySelectorAll('.product_prev').forEach(function(e){
+                    if(e.classList.contains("active")) e.classList.remove("active");
+                });
+                if(!parent.classList.contains("active")) parent.classList.add("active");
+            });
+        });
 
-				let parent = item.target.parentNode.parentNode;
-				document.querySelectorAll('.product_prev').forEach(function(e){
-					if(e.classList.contains("active")) e.classList.remove("active");
-				});
-				if(!parent.classList.contains("active")) parent.classList.add("active");
-			});
-		});
+        mainImg.addEventListener('click', function(){
+            event.preventDefault();
+            let mainImgPath = mainImg.getAttribute('src');
+            let arrPath = document.querySelectorAll('.product_prev_link');
+            let namber = 0;
+            for (let i = 0; i < arrPath.length; i++) {
+                if (arrPath[i].getAttribute('href') == mainImgPath) {
+                    namber = i;
+                }
+            }
+            $.fancybox.open($('.product_prev_link'), {
+                touch: true,
+                loop: true
+            }, namber);
+        });
+    }
 
-		mainImg.addEventListener('click', function(){
-			event.preventDefault();
-			let mainImgPath = mainImg.getAttribute('src');
-			let arrPath = document.querySelectorAll('.product_prev_link');
-			let namber = 0;
-			for (let i = 0; i < arrPath.length; i++) {
-				if (arrPath[i].getAttribute('href') == mainImgPath) {
-					namber = i;
-				}
-			}
-			$.fancybox.open($('.product_prev_link'), {
-				touch: true,
-				loop: true
-			}, namber);
-		});
-	}
+	if(document.getElementById('ImagesSlider')) showGallery();
+
+
+
+
+
+
+
+
+
+
 
 	//offers
 	if(document.getElementById('offerList')){
@@ -203,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				let name = li.dataset.name;
 				let number = li.dataset.number;
-				let parent = li.dataset.parent;
+				let offer = li.dataset.offer;
 				let price = li.dataset.price;
 				let old = li.dataset.old;
 				let domPrice = document.createElement('span');
@@ -222,6 +232,27 @@ document.addEventListener('DOMContentLoaded', () => {
 				offerInfo.innerHTML = '';
 				if(number) offerInfo.insertAdjacentHTML('afterbegin', '<span><b>Артикул</b> '+number+'</span>');
 				if(name) offerInfo.insertAdjacentHTML('beforeend', '<span><b>Цвет</b> '+name+'</span>');
+
+                getProduct('/get-offer-product', {
+                    _token: document.querySelector('meta[name=csrf-token]').content,
+                    offer: offer
+                }) .then((data) => {
+                    document.getElementById('imagesWrap').innerHTML = data;
+                    showGallery();
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			});
 		})
@@ -252,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	funcItemsHeight()
 	function funcItemsHeight() {
 		tabsList = document.querySelectorAll('.product_tab');
-		if(tabsList.length >1){
+		if(tabsList.length >0){
 			let height = 0;
 			for( var i = 0; i < tabsList.length; i++ ){
 				let current_height = tabsList[i].offsetHeight;
@@ -265,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	window.onresize = funcItemsHeight;
 
-	/** - Акардион - вопросы */
+	/** - Акордион - вопросы */
 	$('.faq_title').click(function () {
 		let element = $(this).parent('.faq_item');
 		let elemContent = $(this).next();

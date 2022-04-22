@@ -1,7 +1,7 @@
 @include('front.layouts.header')
-<main class="container">
+<div class="container">
     @yield('breadcrumbs')
     <h1 class="main_title">@yield('h1')</h1>
     @yield('content')
-</main>
+</div>
 @include('front.layouts.footer')

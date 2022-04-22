@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="prodact_wrap">
-    <div class="product_images_wrap">
+    <div class="product_images_wrap" id="imagesWrap">
         @if($offer == null)
             <div class="product_img_block">
                 <span class="product_label_list">
@@ -121,7 +121,7 @@
             @else
             <div class="product_offers_info" id="offerInfo">
                 @if($offer->number)
-                <span><b>Артикул</b> 30023237</span>
+                <span><b>Артикул</b>{{$offer->number}}</span>
                 @endif
                 @if($offer->color_name)
                 <span><b>Цвет</b>{{$offer->color_name}}</span>
@@ -132,15 +132,16 @@
                 <li class="product_offer @if($loop->index == 0) active @endif"
                     data-name="{{$offerItem->color_name}}"
                     data-number = "{{$offerItem->number}}"
-                    data-parent = "{{$offerItem->id}}"
+                    data-offer = "{{$offerItem->id}}"
                     data-price = "{{$offerItem->cost}}"
                     data-old = "{{$offerItem->old_price}}">
                     <span class="product_offer_color" style="background-image: url({{asset($offerItem->color_file)}});"></span>
                 </li>
                 @endforeach
             </ul>
+            @endif
         </div>
-        @endif
+
         <div class="product_price" id="priceBlock">
             @if($offer == null)
                 @if($product->price>0)
@@ -162,6 +163,8 @@
                 @endif
             @endif
         </div>
+
+
     </div><!-- Attribution -->
     <div class="product_contact_wrap">
         <div class="product_contact_item">
@@ -205,6 +208,7 @@
             <div class="product_contact_text">+7 (495) 423-69-64</div>
         </div>
 
+
         <div class="product_contact_item">
             <div class="product_contact_icon">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
@@ -235,7 +239,7 @@
 													c-0.936-0.062-1.718-0.969-1.716-1.99C9.248,14.807,10.1,13.9,11.095,13.923z M12.591,16.19c-0.264-1.147-0.64-1.764-1.575-1.746
 													c-0.87,0.017-1.249,0.612-1.256,1.429c-0.008,0.887,0.453,1.574,1.335,1.441C11.638,17.231,12.095,16.583,12.591,16.19z"></path>
                             </g>
-						</svg>
+				</svg>
             </div>
 
             <h3 class="product_contact_title">online</h3>
@@ -246,7 +250,8 @@
 
 
         <div class="product_contact_item">
-            <div class="product_contact_icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+            <div class="product_contact_icon">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
 						<g>
                             <path fill="#333333" d="M19.819,38.334c-0.196-0.256-0.37-0.534-0.592-0.766c-3.971-4.136-7.538-8.564-10.091-13.741
 												C6.913,19.319,6.29,14.692,8.281,9.953c1.862-4.431,5.072-7.313,9.926-8.147c0.114-0.02,0.22-0.092,0.329-0.14
@@ -260,10 +265,13 @@
 												c0.009-2.909-2.295-5.204-5.236-5.213c-2.786-0.008-5.09,2.318-5.1,5.149c-0.01,2.889,2.254,5.188,5.134,5.211
 												C22.827,20.298,25.158,17.993,25.168,15.128z"></path>
                         </g>
-					</svg></div>
+				</svg>
+            </div>
 
             <h3 class="product_contact_title">offline</h3>
-            <div class="product_contact_text"><a href="{{route('partner.index')}}">Где купить</a></div>
+            <div class="product_contact_text"><a href="{{route('dealer.list')}}">Где купить</a></div>
+
+
         </div>
     </div><!-- CONTACTS -->
 </div><!-- END TOP -->
@@ -276,7 +284,6 @@
     </ul>
 
     <div class="product_tab_wrap" id="tabWrapper">
-
         @if($product->description)<div class="product_tab behold" data-tab="discrip">{!! $product->description !!}</div>@endif
         @if($product->accessory)<div class="product_tab" data-tab="property">{!! $product->accessory !!}</div>@endif
         @if($product->documents->isNotEmpty())
@@ -292,15 +299,7 @@
                 @endforeach
             </div>
         @endif
-
-
     </div>
 
-
 </div>
-
-
-
-
-
 @endsection

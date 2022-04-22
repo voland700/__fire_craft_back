@@ -22,8 +22,11 @@ Route::get('/catalog/category/{slug}', [App\Http\Controllers\Front\CatalogContro
 Route::get('/catalog/product/{slug}', [App\Http\Controllers\Front\CatalogController::class, 'product'])->name('catalog.product');
 Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
 Route::post('/get-offer-list', [App\Http\Controllers\Front\CatalogController::class, 'getOfferList'])->name('get_offer_list');
+Route::post('/get-offer-product', [App\Http\Controllers\Front\CatalogController::class, 'getOfferProduct'])->name('get_offer_product');
 
-Route::get('/partners', [App\Http\Controllers\Front\PartnerController::class, 'index'])->name('partner.index');
+Route::get('/dealers', [App\Http\Controllers\Front\DealerController::class, 'list'])->name('dealer.list');
+Route::get('/dealers/region/{slug}', [App\Http\Controllers\Front\DealerController::class, 'region'])->name('dealer.region');
+Route::get('/dealers/detail/{slug}', [App\Http\Controllers\Front\DealerController::class, 'detail'])->name('dealer.detail');
 
 
 

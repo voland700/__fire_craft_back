@@ -61,7 +61,7 @@
                         <a href="#" class="header_menu_link">Дилерам</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Где купить</a>
+                        <a href="{{route('dealer.list')}}" class="header_menu_link">Где купить</a>
                     </li>
                     <li class="header_menu_item">
                         <a href="#" class="header_menu_link">Контакты</a>
@@ -74,7 +74,7 @@
         <div class="container header_search_wrap">
             <div class="header_search_btn_wrap">
                 <a href="{{route('catalog.index')}}" class="header_search_btn">Каталог</a>
-                <a href="#" class="header_search_btn">Где купить</a>
+                <a href="{{route('dealer.list')}}" class="header_search_btn">Где купить</a>
             </div>
             <form action="#" method="get" class="search_form">
                 <input id="searchInput" type="text" name="s" value="" class="search_input" required="" placeholder="Поиск">

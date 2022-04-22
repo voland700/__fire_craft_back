@@ -44,22 +44,9 @@ class CatalogController extends Controller
             $offer = $product->offers->sortBy('sort')->first();
             //getPrice($offer);
         }
-        dd($product->documents);
+        //dd($product->documents);
         return view('front.catalog.product', compact('product', 'category', 'offer'));
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
 
     public function getOfferList(Request $request)
     {
@@ -70,6 +57,12 @@ class CatalogController extends Controller
         });
         $offer = $product->offers->where('id', $request->offer_id)->first();
         return view('front.catalog.offer_list', compact('product', 'offer'));
+    }
+
+    public function getOfferProduct(Request $request)
+    {
+        $offer = Offer::with('photos')->find($request->offer);
+        return view('front.catalog.offer_product', compact('offer'));
     }
 
 

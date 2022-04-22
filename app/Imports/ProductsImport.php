@@ -34,11 +34,6 @@ use Maatwebsite\Excel\Events\AfterImport;
 //use Intervention\Image\ImageManagerStatic as Image;
 
 
-
-
-
-
-
 class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, SkipsOnError, SkipsOnFailure, WithChunkReading
 {
 
@@ -83,14 +78,11 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
                 $data['price'] = $data['base_price'];
             }
 
-
             if($row['properties'] != NULL){
                 if(is_array(json_decode($row['properties'], true)))  $data['properties'] = $row['properties'];
             } else {
                 $data['properties'] = NULL;
             }
-
-
 
             if( $row['img']) {
                 if (Storage::disk('public')->exists($row['img'])){
@@ -150,7 +142,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, Sk
             }
 
             if($row['documents']) {
-                $documents = explode( '.', $row['documents'] );
+                $documents = explode( ',', $row['documents'] );
                 $arrID = [];
                 foreach ($documents as $id ){
                     if(in_array($id, Arr::flatten($this->documents))) array_push($arrID, $id );
