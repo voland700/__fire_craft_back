@@ -28,7 +28,34 @@ Route::get('/dealers', [App\Http\Controllers\Front\DealerController::class, 'lis
 Route::get('/dealers/region/{slug}', [App\Http\Controllers\Front\DealerController::class, 'region'])->name('dealer.region');
 Route::get('/dealers/detail/{slug}', [App\Http\Controllers\Front\DealerController::class, 'detail'])->name('dealer.detail');
 
+//CONTENT - pages
+Route::get('/about', function () {
+    return view('front.content.about');
+})->name('content.about');
 
+Route::get('/questions', function () {
+    return view('front.content.questions');
+})->name('content.questions');
+
+Route::get('/guarantee', function () {
+    return view('front.content.guarantee');
+})->name('content.guarantee');
+
+Route::get('/delivery', function () {
+    return view('front.content.delivery');
+})->name('content.delivery');
+
+Route::get('/information', function () {
+    return view('front.content.information');
+})->name('content.information');
+
+Route::get('/contacts', function () {
+    return view('front.content.contacts');
+})->name('content.contacts');
+
+Route::get('/agreement', function () {
+    return view('front.content.agreement');
+})->name('content.agreement');
 
 
 

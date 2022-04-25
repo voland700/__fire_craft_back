@@ -27,8 +27,6 @@ class Dealer extends Model
         'meta_keywords',
         'meta_description'
     ];
-    //protected $appends = ['region'];
-
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -36,15 +34,8 @@ class Dealer extends Model
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }
-
     public function region()
     {
         return $this->belongsTo(Region::class);
     }
-    /*
-    public function getRegionAttribute()
-    {
-        return $this->region->name;
-    }
-    */
 }

@@ -1475,8 +1475,7 @@ jQuery.fn.vectorMap('addMap', 'russia', {
 				},
 				// Клик по региону
 				onRegionClick: function (element, code, region) {
-					//document.location.replace('/partners/'+code+'/'); /* -- переход по ссылке на регион --*/
-					alert(region + ' - ' + code);
+					document.location.replace('/dealers/region/'+code+'/'); /* -- переход по ссылке на регион --*/
 				}
 			});
 

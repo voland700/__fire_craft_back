@@ -170,4 +170,57 @@ Breadcrumbs::for('dealer.list', function (BreadcrumbTrail $trail) {
     $trail->parent('index');
     $trail->push('Партнеры', route('dealer.list'));
 });
+//DEALERS - region - (list of dealers at a region)
+Breadcrumbs::for('dealer.region', function (BreadcrumbTrail $trail, App\Models\Region $region) {
+    $trail->parent('index');
+    $trail->push('Партнеры', route('dealer.list'));
+    $trail->push($region->name, route('dealer.region', $region));
+});
+//DEALERS - dealer detail
+Breadcrumbs::for('dealer.detail', function (BreadcrumbTrail $trail, App\Models\Dealer $dealer) {
+    $trail->parent('index');
+    $trail->push('Партнеры', route('dealer.list'));
+    $trail->push($dealer->region->name, route('dealer.region', $dealer->region->item));
+    $trail->push($dealer->name, route('dealer.detail', $dealer));
+});
+//CONTENT - about
+Breadcrumbs::for('content.about', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('О компании', route('content.about'));
+});
 
+//CONTENT - questions
+Breadcrumbs::for('content.questions', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Вопросы', route('content.questions'));
+});
+
+//CONTENT - guarantee
+Breadcrumbs::for('content.guarantee', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Вопросы', route('content.guarantee'));
+});
+
+//CONTENT - delivery
+Breadcrumbs::for('content.delivery', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Доставка', route('content.delivery'));
+});
+
+//CONTENT - information
+Breadcrumbs::for('content.information', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Доставка', route('content.information'));
+});
+
+//CONTENT - information
+Breadcrumbs::for('content.contacts', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Контакты', route('content.contacts'));
+});
+
+//CONTENT - information
+Breadcrumbs::for('content.agreement', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Обработка персональных данных', route('content.agreement'));
+});

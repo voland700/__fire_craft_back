@@ -46,25 +46,25 @@
                 <a class="header-menu-burgers btn-close" id="navBtn"></a>
                 <ul class="header_menu" id="headerMenu">
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">О нас</a>
+                        <a href="{{route('content.about')}}" class="header_menu_link">О нас</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Вопросы</a>
+                        <a href="{{route('content.questions')}}" class="header_menu_link">Вопросы</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Гарантия</a>
+                        <a href="{{route('content.guarantee')}}" class="header_menu_link">Гарантия</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Доставка</a>
+                        <a href="{{route('content.delivery')}}" class="header_menu_link">Доставка</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Дилерам</a>
+                        <a href="{{route('content.information')}}" class="header_menu_link">Дилерам</a>
                     </li>
                     <li class="header_menu_item">
                         <a href="{{route('dealer.list')}}" class="header_menu_link">Где купить</a>
                     </li>
                     <li class="header_menu_item">
-                        <a href="#" class="header_menu_link">Контакты</a>
+                        <a href="{{route('content.contacts')}}" class="header_menu_link">Контакты</a>
                     </li>
                 </ul>
             </nav>
