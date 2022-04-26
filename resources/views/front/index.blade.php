@@ -30,17 +30,17 @@
     <h2 class="title-line">Эксклюзивный представитель <span>компаний</span></h2>
     <div class="brend_list">
         <div class="brend_img_wrap">
-            <a href="#" class="brend_link">
+            <a href="/catalog/category/peci-kaminy-jotul" class="brend_link">
                 <img src="{{asset('/images/src/brend/jotul.jpg')}}" alt="Jotul" class="brend_img">
             </a>
         </div>
         <div class="brend_img_wrap">
-            <a href="#" class="brend_link">
+            <a href="/catalog/category/peci-kaminy-morso" class="brend_link">
                 <img src="{{asset('/images/src/brend/scan.jpg')}}" alt="Scan" class="brend_img">
             </a>
         </div>
         <div class="brend_img_wrap">
-            <a href="#" class="brend_link">
+            <a href="/catalog/category/peci-kaminy-scan" class="brend_link">
                 <img src="{{asset('/images/src/brend/morso.jpg')}}" alt="Morso" class="brend_img">
             </a>
         </div>

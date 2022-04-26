@@ -209,8 +209,9 @@
         <h3>Задайте вопрос</h3>
     </div>
 
-    <form action="#" method="post" class="modal_form" id="modalForm">
-
+    <form action="{{route('get_question')}}" method="POST" class="modal_form" id="modalForm">
+        @csrf
+        @method('POST')
         <div class="modal_fild">
             <label>Ваше имя<span class="req">*</span></label>
             <input type="text" name="snitch" id="CollBackName" value="" required="" placeholder="Иван Иванович">
@@ -223,7 +224,7 @@
         </div>
         <div class="modal_fild">
             <label>Сообщение</label>
-            <textarea name="message" rows="5"></textarea>
+            <textarea name="message" rows="5" id="CallMassage"></textarea>
         </div>
         <div class="modal_agreement">
             <input type="checkbox" id="modalCheck" class="modal_check" name="agreement" value="yes" checked="checked" required="">
@@ -234,8 +235,19 @@
         </div>
     </form>
 </div>
-
+<div class="modal" style="display: none;" id="success">
+    <div class="modal_top">
+        <h3>Ваше сообщение получено!</h3>
+    </div>
+    <div style="padding: 50px 0;">Мы обязательно ответим на все Ваши вопросы.</div>
+    <div class="modal_call_footer" >
+        <button class="modal_btn" id="modalBtnClosed">Закрыть</button>
+    </div>
+</div>
 <script src="/js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+
 <script src="/js/app.js"></script>
 @yield('scripts')
 </body>

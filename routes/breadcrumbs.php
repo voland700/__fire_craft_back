@@ -132,6 +132,22 @@ Breadcrumbs::for('offer.import.show', function (BreadcrumbTrail $trail) {
 });
 
 
+//
+Breadcrumbs::for('question.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.index');
+    $trail->push('Вопросы пользователей', route('question.index'));
+});
+
+Breadcrumbs::for('question.show', function (BreadcrumbTrail $trail, \App\Models\Question $question) {
+    $trail->parent('question.index', $question);
+    $trail->push($question->name, route('question.show', $question));
+});
+
+
+
+
+
+
 
 
 //FRONT

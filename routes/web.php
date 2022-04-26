@@ -24,9 +24,17 @@ Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'sea
 Route::post('/get-offer-list', [App\Http\Controllers\Front\CatalogController::class, 'getOfferList'])->name('get_offer_list');
 Route::post('/get-offer-product', [App\Http\Controllers\Front\CatalogController::class, 'getOfferProduct'])->name('get_offer_product');
 
+Route::get('/get-results', [App\Http\Controllers\Front\CatalogController::class, 'typeaheadSearch']);
+
+
 Route::get('/dealers', [App\Http\Controllers\Front\DealerController::class, 'list'])->name('dealer.list');
 Route::get('/dealers/region/{slug}', [App\Http\Controllers\Front\DealerController::class, 'region'])->name('dealer.region');
 Route::get('/dealers/detail/{slug}', [App\Http\Controllers\Front\DealerController::class, 'detail'])->name('dealer.detail');
+
+Route::post('/get-question', [\App\Http\Controllers\Admin\Content\QuestionController::class, 'getQuestion'])->name('get_question');
+
+
+
 
 //CONTENT - pages
 Route::get('/about', function () {
@@ -170,7 +178,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('/region', \App\Http\Controllers\Admin\Content\RegionController::class);
     Route::resource('/dealer', \App\Http\Controllers\Admin\Content\DealerController::class);
-
+    Route::resource('/question', \App\Http\Controllers\Admin\Content\QuestionController::class);
 });
 
 

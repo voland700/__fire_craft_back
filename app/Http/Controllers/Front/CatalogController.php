@@ -65,6 +65,15 @@ class CatalogController extends Controller
         return view('front.catalog.offer_product', compact('offer'));
     }
 
+    public function typeaheadSearch(Request $request)
+    {
+        $dbQuery = $request->get('query');
+        $output = Product::where('name', 'LIKE', '%'. $dbQuery. '%')->get();
+
+        dd($output)ж
+        //return response()->json($output);
+    }
+
 
 
 }

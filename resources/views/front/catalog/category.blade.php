@@ -12,7 +12,7 @@
     @if(!$categories->isEmpty())
         <div class="category_list">
             @foreach($categories as $categoryItem)
-                <div class="category_item">
+                <div class="category_item" onclick="location.href='{{route('catalog.category', $categoryItem->slug)}}';">
                     <a href="{{route('catalog.category', $categoryItem->slug)}}" class="category_link">{{$categoryItem->name}}</a>
                     <div class="category_img_wrup">
                         <img src="{{asset($categoryItem->thumbnail)}}" alt="{{$categoryItem->name}}" class="category_img">

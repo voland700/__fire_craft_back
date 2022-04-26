@@ -30,7 +30,7 @@
     <div class="header_nav">
         <div class="container header_nav_wrap">
             <div class="header_logo_wrap">
-                <a href="#" class="header_logo_link">
+                <a href="/" class="header_logo_link">
                     <div class="logo_svg">
                         <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720.23 719.72">
                             <path d="M367.17,727,8.22,367c.86-1,1.6-1.87,2.44-2.71Q187.92,187,365.18,9.74c.48-.48,1-.94,1.44-1.44,1.3-1.42,2.54-1.31,3.79.06.74.8,1.54,1.54,2.3,2.31L725.23,363.19c1.14,1.14,2.24,2.31,3.22,3.32L656,439,368.76,151.72,153.28,367.2l72.23,72.23q71.6-71.6,144.57-144.57a15.31,15.31,0,0,1,1.45,2.93,13.43,13.43,0,0,1,.07,2.84q0,66.8.06,133.6a9.05,9.05,0,0,1-2.94,7.1q-34.1,33.87-68,67.92c-1,1.05-2,2.13-3.12,3.25l142,142Z" transform="translate(-8.22 -7.28)" />
@@ -77,7 +77,7 @@
                 <a href="{{route('dealer.list')}}" class="header_search_btn">Где купить</a>
             </div>
             <form action="#" method="get" class="search_form">
-                <input id="searchInput" type="text" name="s" value="" class="search_input" required="" placeholder="Поиск">
+                <input id="searchInput" type="text" name="autocomplete" class="search_input" placeholder="Поиск">
                 <input type="submit" class="search_btn">
             </form>
         </div>
