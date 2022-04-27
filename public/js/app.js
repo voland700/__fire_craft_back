@@ -381,22 +381,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    //var route = "/get-results";
-    $('#searchInput').typeahead({
-        source: function (query, process) {
-            return $.get('/get-results', {
-                query: query,
-                classNames: {
-                    input: 'Typeahead-input',
-                    hint: 'Typeahead-hint',
-                    selectable: 'Typeahead-selectable'
+
+        // Set the Options for "Bloodhound" suggestion engine
+        var engine = new Bloodhound({
+            remote: {
+                url: '/get-results?q=%QUERY%',
+                wildcard: '%QUERY%'
+            },
+            datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace
+        });
+
+        $("#searchInput").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            source: engine.ttAdapter(),
+
+            name: 'usersList',
+
+            templates: {
+                empty: [
+                    '<div class="list-group search-results-dropdown"><div class="list-group-item">Nothing found.</div></div>'
+                ],
+                header: [
+                    '<div class="list-group search-results-dropdown">'
+                ],
+
+                suggestion: function (data) {
+                    return '<a href="/catalog/product/' + data.slug + '" class="list-group-item">' + data.name + '</a>'
                 }
-            }, function (d) {
-                console.log(d)
-                return process(d);
-            });
-        }
-    });
+
+
+            }
+
+
+        });
 
 
 

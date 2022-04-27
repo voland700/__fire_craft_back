@@ -151,8 +151,4 @@ class Product extends Model
     {
         return (!$this->h1==NULL) ? $this->h1 : $this->name;
     }
-
-
-
-
 }

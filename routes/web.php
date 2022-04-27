@@ -20,11 +20,11 @@ Route::get('/', [App\Http\Controllers\Front\IndexController::class, 'index'])->n
 Route::get('/catalog', [App\Http\Controllers\Front\CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/catalog/category/{slug}', [App\Http\Controllers\Front\CatalogController::class, 'category'])->name('catalog.category');
 Route::get('/catalog/product/{slug}', [App\Http\Controllers\Front\CatalogController::class, 'product'])->name('catalog.product');
-Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
 Route::post('/get-offer-list', [App\Http\Controllers\Front\CatalogController::class, 'getOfferList'])->name('get_offer_list');
 Route::post('/get-offer-product', [App\Http\Controllers\Front\CatalogController::class, 'getOfferProduct'])->name('get_offer_product');
 
 Route::get('/get-results', [App\Http\Controllers\Front\CatalogController::class, 'typeaheadSearch']);
+Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
 
 
 Route::get('/dealers', [App\Http\Controllers\Front\DealerController::class, 'list'])->name('dealer.list');

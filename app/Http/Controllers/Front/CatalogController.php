@@ -67,11 +67,20 @@ class CatalogController extends Controller
 
     public function typeaheadSearch(Request $request)
     {
-        $dbQuery = $request->get('query');
+        $dbQuery = $request->get('q');
         $output = Product::where('name', 'LIKE', '%'. $dbQuery. '%')->get();
+        return response()->json($output);
+    }
 
-        dd($output)ж
-        //return response()->json($output);
+    public function search(Request $request)
+    {
+        $q = $request->q;
+        $request->validate([
+            'q' => 'required',
+        ]);
+        $products = Product::where('name', 'LIKE', '%'. $q. '%')->with('discount', 'offers')->where('active', 1)->orderBy('sort')->paginate(24);
+        addDataPriceAll($products);
+        return view('front.catalog.search', compact('products', 'q'));
     }
 
 

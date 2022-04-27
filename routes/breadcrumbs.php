@@ -181,6 +181,13 @@ Breadcrumbs::for('catalog.product', function (BreadcrumbTrail $trail, App\Models
     $trail->push($product->name, route('catalog.product', $product));
 });
 
+// - CATALOG - search
+Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Каталог', route('catalog.index'));
+    $trail->push('Поиск', route('search'));
+});
+
 //DEALERS - index
 Breadcrumbs::for('dealer.list', function (BreadcrumbTrail $trail) {
     $trail->parent('index');

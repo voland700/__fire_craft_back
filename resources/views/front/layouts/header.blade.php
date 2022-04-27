@@ -76,8 +76,8 @@
                 <a href="{{route('catalog.index')}}" class="header_search_btn">Каталог</a>
                 <a href="{{route('dealer.list')}}" class="header_search_btn">Где купить</a>
             </div>
-            <form action="#" method="get" class="search_form">
-                <input id="searchInput" type="text" name="autocomplete" class="search_input" placeholder="Поиск">
+            <form action="{{route('search')}}" method="get" class="search_form">
+                <input id="searchInput" type="text" name="q" class="search_input" placeholder="Поиск"  autocomplete="off">
                 <input type="submit" class="search_btn">
             </form>
         </div>
