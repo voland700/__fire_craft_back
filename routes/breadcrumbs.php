@@ -247,3 +247,8 @@ Breadcrumbs::for('content.agreement', function (BreadcrumbTrail $trail) {
     $trail->parent('index');
     $trail->push('Обработка персональных данных', route('content.agreement'));
 });
+//CONTENT - iron
+Breadcrumbs::for('content.iron', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Почему мы выбираем чугун', route('content.iron'));
+});

@@ -55,7 +55,7 @@
         <div class="container main_category">
             <div class="main_category_list">
                 @foreach($favoriteCategories as $cat)
-                <div class="main_category_item">
+                <div class="main_category_item" onclick="location.href='{{ route('catalog.category', ['slug' => $cat->slug]) }}';">
                     <a href="{{ route('catalog.category', ['slug' => $cat->slug]) }}" class="main_category_item_title">{{$cat->name}}</a>
                     <img src="{{ asset($cat->photo)}}" alt="{{$cat->name}}" class="main_category_item_img">
                     <div class="main-category-item-bottom">

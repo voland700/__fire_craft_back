@@ -65,6 +65,18 @@ Route::get('/agreement', function () {
     return view('front.content.agreement');
 })->name('content.agreement');
 
+Route::get('/why-iron', function () {
+    return view('front.content.iron');
+})->name('content.iron');
+
+Route::get('/see-all', function () {
+    return view('front.content.all');
+})->name('content.all');
+
+Route::get('/first-ignition', function () {
+    return view('front.content.ignition');
+})->name('content.ignition');
+
 
 
 Route::get('/dashboard', function () {

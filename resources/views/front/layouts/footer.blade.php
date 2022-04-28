@@ -235,11 +235,19 @@
         </div>
     </form>
 </div>
-<div class="modal" style="display: none;" id="success">
+<div class="modal" id="success" style="display: none;">
     <div class="modal_top">
         <h3>Ваше сообщение получено!</h3>
     </div>
-    <div style="padding: 50px 0;">Мы обязательно ответим на все Ваши вопросы.</div>
+    <div class="modal_content">
+        <svg class="modal_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.64 454.64">
+            <g>
+                <path d="M233,459.82a227.56,227.56,0,1,1,160.67-66.65A227.32,227.32,0,0,1,233,459.82ZM233,33.6A198.91,198.91,0,1,0,373.65,91.86,198.9,198.9,0,0,0,233,33.6Z" transform="translate(-5.68 -5.18)" fill="#008c31"/>
+                <path d="M204.87,297.86a14.17,14.17,0,0,1-10-4.17l-46.84-47a14.21,14.21,0,0,1,20.08-20.08l36.8,36.8,93.06-92.87a14.28,14.28,0,1,1,20.31,20.08L215,293.69a14.18,14.18,0,0,1-10.08,4.17Z" transform="translate(-5.68 -5.18)" fill="#008c31"/>
+            </g>
+        </svg>
+    </div>
+    <div class="modal_sub">Мы обязательно ответим на все Ваши вопросы.</div>
     <div class="modal_call_footer" >
         <button class="modal_btn" id="modalBtnClosed">Закрыть</button>
     </div>
