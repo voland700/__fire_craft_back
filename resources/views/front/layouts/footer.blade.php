@@ -111,7 +111,7 @@
         <div class="footer_info">
             <h3 class="footer_info_title">Найди вдохновение</h3>
             <p class="footer_info_txt">У нас самый большой выбор дровяных печей и каминов, которые подходят к абсолютно разным интерьерам. Мы собрали здесь несколько примеров, чтобы показать как наши продукты выглядят в современном доме. Печи соответсвуют всем современны тебованиям: экологичности и безопасности, являются высокоэффектиным отопительным прибором и красивым предметом интеьера. Мы уверенны что форма должна следовать за функционалом.		</p>
-            <a href="{{route('catalog.index')}}" class="why_item_link">Посмотреть все изделия</a>
+            <a href="{{route('content.all')}}" class="why_item_link">Посмотреть все изделия</a>
         </div>
         @include('front.layouts.footer_slider')
     </div>
@@ -253,10 +253,7 @@
     </div>
 </div>
 <script src="/js/main.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-
-<script src="/js/app.js"></script>
+<script src="/js/common.js"></script>
 
 @yield('scripts')
 </body>

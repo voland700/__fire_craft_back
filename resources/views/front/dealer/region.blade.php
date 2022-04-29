@@ -20,7 +20,7 @@
                         @if($dealer->time)<li><b>Время работы: </b>{{$dealer->time}}</li>@endif
                         @if($dealer->phone)<li><b>Тел:</b> {{$dealer->phone}}</li>@endif
                         @if($dealer->mail)<li><b>E-mail:</b> {{$dealer->mail}}</li>@endif
-                        @if($dealer->site)<li><b>Сайт:</b> <a href="{{$dealer->site}}"  target="_blank">{{$dealer->site}}</a></li>@endif
+                        @if($dealer->site)<li><b>Сайт:</b> <a href="{{$dealer->is_http}}"  target="_blank">{{$dealer->site}}</a></li>@endif
                     </ul>
                 </section>
             @endforeach

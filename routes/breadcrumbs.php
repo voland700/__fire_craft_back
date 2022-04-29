@@ -252,3 +252,14 @@ Breadcrumbs::for('content.iron', function (BreadcrumbTrail $trail) {
     $trail->parent('index');
     $trail->push('Почему мы выбираем чугун', route('content.iron'));
 });
+
+//CONTENT - all
+Breadcrumbs::for('content.all', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Печи Скандинавских производителей', route('content.all'));
+});
+//CONTENT - ignition
+Breadcrumbs::for('content.ignition', function (BreadcrumbTrail $trail) {
+    $trail->parent('index');
+    $trail->push('Розжиг печи-камина', route('content.ignition'));
+});

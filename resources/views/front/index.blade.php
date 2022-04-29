@@ -15,7 +15,7 @@
                     <h2 class="slider_title" data-swiper-parallax-scale="0">{{$slider->name}}</h2>
                     <div class="slider-btn-wrap" data-swiper-parallax-y="-200" data-swiper-parallax-opacity="0">
                         <a href="{{route('catalog.index')}}" class="slider-btn">Каталог</a>
-                        <a href="#" class="slider-btn">Где купить</a>
+                        <a href="{{route('dealer.list')}}" class="slider-btn">Где купить</a>
                     </div>
                 </section>
                 @endforeach
@@ -76,21 +76,21 @@
                 <h3 class="why_item_title">Покупка камина</h3>
                 <p class="why_txt"> У Jøtul есть самая широкая дистрибуционная сеть, а также программа обучения, которая обеспечивает высокий уровень знаний продавцов. Центр обучения находится в Норвегии, но ежегодно проводятся также семинары в большей части стран, в которых продаеются продукты Jøtul.
                 </p>
-                <a href="#" class="why_item_link">Точки продаж</a>
+                <a href="{{route('content.delivery')}}" class="why_item_link">Точки продаж</a>
             </div>
 
             <div class="why_item">
                 <h3 class="why_item_title">Почему чугун</h3>
                 <p class="why_txt"> Чугун обладает экстремальными свойствами, благодаря которым это делает его подходящим материалом для производства каминов. Но что такое чугун и почему в Jøtul мы продолжаем поддерживать его Норвежскую традицию?
                 </p>
-                <a href="#" class="why_item_link">Описание изделий</a>
+                <a href="{{route('content.iron')}}" class="why_item_link">Описание изделий</a>
             </div>
 
             <div class="why_item">
                 <h3 class="why_item_title">Розжиг камина</h3>
                 <p class="why_txt">Не сложно приобрести камин или дровяную печь, но есть некоторые нюансы, которые нужно знать перед тем как приступить к его эксплуатации. Ниже ты узнаешь больше о том, какое использовать топливо и как растопить камин правильно, а так же как продлить его срок службы.
                 </p>
-                <a href="#" class="why_item_link">Первый розжиг</a>
+                <a href="{{route('content.ignition')}}" class="why_item_link">Первый розжиг</a>
             </div>
 
         </div>

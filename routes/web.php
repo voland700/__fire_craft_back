@@ -95,7 +95,7 @@ Route::get('/clear', function() {
 })->name('clear.cash');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:Admin']], function () {
 
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
     Route::post('/drop-remove-file',[\App\Http\Controllers\Admin\DropzoneController::class, 'removeOne'])->name('dropzone.remove.one');
@@ -193,9 +193,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/question', \App\Http\Controllers\Admin\Content\QuestionController::class);
 });
 
-
-
-
-
-
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/sitemap', [\App\Http\Controllers\Front\SitemapController::class, 'createSitemap'])->name('sitemap');
+});
 

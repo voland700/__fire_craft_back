@@ -50,7 +50,6 @@ mix.copy('resources/assets/admin/plugins/summernote/summernote-bs4.min.js.map', 
 mix.copy('resources/assets/admin/plugins/summernote/font', 'public/assets/admin/css/font');
 mix.copy('resources/assets/admin/plugins/dropzone/min/dropzone.min.js', 'public/assets/admin/js/dropzone.min.js');
 
-
 mix.styles([
     'resources/assets/front/css/app.min.css',
 ], 'public/css/main.css');
@@ -58,10 +57,11 @@ mix.styles([
 mix.scripts([
     'resources/assets/front/js/jquery-3.6.0.min.js',
     'resources/assets/front/js/jquery.fancybox.min.js',
-    'resources/assets/front/js/swiper-bundle.min.js'
+    'resources/assets/front/js/swiper-bundle.min.js',
+    'resources/assets/front/js/typeahead.bundle.js'
 ], 'public/js/main.js').sourceMaps();
 
 mix.copyDirectory('resources/assets/front/js/map.js', 'public/js');
 mix.copyDirectory('resources/assets/front/fonts', 'public/fonts');
-mix.copyDirectory('resources/assets/front/images/src', 'public/images/src');
+//mix.copyDirectory('resources/assets/front/images/src', 'public/images/src');
 mix.copy('resources/assets/front/js/vue.global.prod.js', 'public/js/vue.global.prod.js');

@@ -38,4 +38,14 @@ class Dealer extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+    //Accessors
+    public function getIsHttpAttribute()
+    {
+        if ((!(substr($this->site, 0, 7) == 'http://')) && (!(substr($this->site, 0, 8) == 'https://'))) {
+            return 'http://' . $this->site;
+        } else {
+            return $this->site;
+        }
+    }
 }

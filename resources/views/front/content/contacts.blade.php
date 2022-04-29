@@ -31,14 +31,11 @@
                 Широта: 37.5113
             </div>
         </div>
-        <p>Компания "ФАИР-КРАФТ" расположена на внутренней стороне 38 км. МКАД, на территории Садового центра "Ясенево".</p>
-        <div class="img-thumbnail _mb_25" style="width: 100%">
-            <script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=F3QZFUNVAMb1sUiU7-AGePSn4Jrc_Gnc&width=auto&height=450"></script>
-        </div>
-        <section>
+
+        <section class="_mb_3">
             <h2 class="contact_h2 _mb_2">Схема проезда к складу ООО "ФАИР-КРАФТ" под погрузку</h2>
 
-            <div class="contact_scheme_wrap">
+            <div class="contact_scheme_wrap _mb_1">
                 <div class="contact_scheme_item">
                     <h5>Cхема проезда с Внешней стороны МКАД</h5>
                     <a data-fancybox="gallery" href="/images/src/contact/path_out.jpg" class="contact_scheme_link">
@@ -53,8 +50,12 @@
                 </div>
 
             </div>
+            <p>Компания "ФАИР-КРАФТ" расположена на внутренней стороне 38 км. МКАД, на территории Садового центра "Ясенево".</p>
 
         </section>
+        <div class="img-thumbnail _mb_25" style="width: 100%">
+            <script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=F3QZFUNVAMb1sUiU7-AGePSn4Jrc_Gnc&width=auto&height=450"></script>
+        </div>
 
     </div>
 @endsection

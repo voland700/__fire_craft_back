@@ -31,12 +31,12 @@
         <p>Другим, важным преимуществом чугунных печей перед стальными является отсутствие жесткого теплового излучения и выгорания кислорода в отапливаемом помещении. Несомненно, не все стальные печи приводят к выгоранию кислорода. Футерованные, современные печи со стальными топками так же заслуживают внимания. Однако, даже обычные чугунные печи, в связи с отсутствием жесткого теплового излучения, сохраняют необходимый для хорошего самочувствия уровень влажности и кислорода в отапливаемом помещении.</p>
         <div class="photo_wrap _mt_2">
             <figure class="photo_f2">
-                <a class="photo_link" href="/images/src/articles/f3_cb.jpg" data-fancybox="photo">
+                <a class="photo_link" href="/images/src/articles/f3_cb.jpg" data-fancybox="photo" data-caption="Классическая чугунная печь JOTUL F 3 CB BP">
                     <img src="/images/src/articles/f3_cb.jpg" class="photo_item" alt="ALT"></a>
                 <figcaption>Классическая чугунная печь JOTUL F 3 CB BP</figcaption>
             </figure>
             <figure class="photo_f2">
-                <a class="photo_link" href="/images/src/articles/7442.jpg" data-fancybox="photo">
+                <a class="photo_link" href="/images/src/articles/7442.jpg" data-fancybox="photo" data-caption="Современная чугунная печь MORSO 7442">
                     <img src="/images/src/articles/7442.jpg" class="photo_item" alt="ALT"></a>
                 <figcaption>Современная чугунная печь MORSO 7442</figcaption>
             </figure>
