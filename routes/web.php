@@ -95,7 +95,7 @@ Route::get('/clear', function() {
 })->name('clear.cash');
 
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:Admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['role:Admin']], function () {
 
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
     Route::post('/drop-remove-file',[\App\Http\Controllers\Admin\DropzoneController::class, 'removeOne'])->name('dropzone.remove.one');

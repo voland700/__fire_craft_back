@@ -41,7 +41,7 @@ if (! function_exists('getPrice')) {
                     $cost['discount'] = true;
                     $cost['price'] = number_format( round($item->price - $discount->value), 2, '.', ' ' );
                     $cost['old_price'] = number_format($item->price, 2, '.', ' ' );
-                    $cost['percent'] = (int)round((($item->price - $discount->value) / $item->price)*100);
+                    $cost['percent'] = (int)round(100 - (($item->price - $discount->value) / $item->price)*100);
                 }
                 if($item->price > 0 && $discount->type == 'cost' && $item->price > $discount->value){
                     $cost['discount'] = true;

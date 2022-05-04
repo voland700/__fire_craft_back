@@ -358,6 +358,7 @@
                 $('#modalCategory').modal('toggle');
             }
         }
+
         function ChoiceGoodsCategoryUpdate(e) {
             e.preventDefault();
             let elem = e.currentTarget;
@@ -371,12 +372,13 @@
                         _token: document.querySelector('meta[name=csrf-token]').content,
                         'id': id,
                         itemsId: arrItemsId,
+                        offersId: arrOffersId,
                     },
                     success: function (response) {
                         //location.reload();
                         //console.log(response);
                         DiscountContemt.innerHTML = response;
-                        selectionGoodsUptate();
+                        // -------  selectionGoodsUptate();
                         discountPaginateUpdate();
                     },
                     error: function (response) {
@@ -386,10 +388,16 @@
         }
 
         function discountPaginateUpdate(e) {
+
             let arrItemsId = [];
             document.querySelectorAll('.d_input').forEach(function (item) {
                 arrItemsId.push(Number(item.value));
             });
+            let arrOffersId = [];
+            document.querySelectorAll('.d_offer_input').forEach(function (item) {
+                arrOffersId.push(Number(item.value));
+            });
+
             document.querySelectorAll('.d_pag').forEach(function (item) {
                 item.addEventListener('click', function (e) {
 
@@ -407,10 +415,11 @@
                                 'page': page,
                                 'category': category,
                                 itemsId: arrItemsId,
+                                offersId: arrOffersId,
                             },
                             success: function (response) {
                                 DiscountContemt.innerHTML = response;
-                                selectionGoodsUptate();
+                                //selectionGoodsUptate();
                                 discountPaginateUpdate();
                             },
                             error: function (response) {

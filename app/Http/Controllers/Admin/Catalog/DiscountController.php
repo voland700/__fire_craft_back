@@ -241,7 +241,7 @@ class DiscountController extends Controller
             $products = Product::paginate(2);
         }else{
             $DataCategories = Category::descendantsAndSelf($categoryId);
-            $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(2);
+            $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(10);
         }
         $products->withPath('/admin/discounts_create_paginate');
         return view('admin.catalog.discounts.ajax.products_choice', compact('products', 'categoryId'));
@@ -256,7 +256,7 @@ class DiscountController extends Controller
         $offers_id = $request->offers_id ? $request->offers_id : [];
         switch ($request->kind) {
             case 'goods':
-                $products = Product::orderBy('sort', 'asc')->paginate(2);
+                $products = Product::orderBy('sort', 'asc')->paginate(10);
                 $categoryId = 0;
                 $products->withPath('/admin/discounts_update_paginate');
                 return view('admin.catalog.discounts.ajax.products_update', compact('categoryId','categories', 'products', 'items_id', 'offers_id'));
@@ -267,25 +267,33 @@ class DiscountController extends Controller
         }
     }
 
+    //выбор категории в модальном окне при обнавлении скидки
     public function choice_categories_update(Request $request){
         $id = $request->id;
-        $DataCategories = Category::descendantsAndSelf($id);
-        $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(2);
         $categoryId = $request->id;
+        $request->itemsId ? $items_id = $request->itemsId : $items_id = [];
+        $request->offersId ?  $offers_id = $request->offersId : $offers_id = [];
+        $DataCategories = Category::descendantsAndSelf($id);
+        $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(10);
         $products->withPath('/admin/discounts_update_paginate');
-        return view('admin.catalog.discounts.ajax.products_choice', compact('products', 'categoryId'));
+        return view('admin.catalog.discounts.ajax.products_choice_update', compact('products', 'categoryId', 'items_id', 'offers_id'));
     }
 
     public function update_paginate(Request $request){
         $categoryId = $request->category;
-        $items_id = $request->itemsId;
+        $request->itemsId ? $items_id = $request->itemsId : $items_id = [];
+        $request->offersId ?  $offers_id = $request->offersId : $offers_id = [];
         if($categoryId == 0){
-            $products = Product::orderBy('sort')->paginate(2);
+            $products = Product::orderBy('sort')->paginate(10);
         }else{
             $DataCategories = Category::descendantsAndSelf($categoryId);
-            $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(2);
+            $products = Product::whereIn('category_id', $DataCategories->pluck('id'))->orderBy('sort')->paginate(10);
         }
         $products->withPath('/admin/discounts_update_paginate');
-        return view('admin.catalog.discounts.ajax.products_choice_update', compact('products', 'categoryId', 'items_id'));
+        return view('admin.catalog.discounts.ajax.products_choice_update', compact('products', 'categoryId', 'items_id', 'offers_id'));
     }
+
+
+
+
 }
