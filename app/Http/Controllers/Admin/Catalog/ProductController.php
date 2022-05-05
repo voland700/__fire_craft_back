@@ -243,8 +243,8 @@ class ProductController extends Controller
             $fileName = time().'_'.Str::lower(Str::random(2)).'.'.$image->getClientOriginalExtension();
 
             $fileBigName = 'big_'.$fileName;
-            $fileSmallName = 'small_'.$fileName;
-            $path_to = '/temp/images/'.getfolderName();
+            $fileSmallName = 'thumb_'.$fileName;
+            $path_to = '/images/'.getfolderName();
             $image->storeAs('public'.$path_to, $fileBigName);
             $image->storeAs('public'.$path_to, $fileSmallName);
             Image::make(storage_path('app/public'.$path_to.'/'.$fileSmallName))->fit(100, 100)->save();
@@ -276,7 +276,7 @@ class ProductController extends Controller
         if ($request->hasFile('file')) {
             $image = $request->file('file');
             $fileName = time() . '_' . Str::lower(Str::random(2)) . '.' . $image->getClientOriginalExtension();
-            $path_to = '/temp/images/' . getfolderName();
+            $path_to = '/images/' . getfolderName();
             $image->storeAs('public' . $path_to, 'big_'.$fileName);
             $image->storeAs('public' . $path_to, 'thumb_'.$fileName);
             $imgPath = 'storage' . $path_to . '/' . 'big_'.$fileName;
@@ -299,7 +299,7 @@ class ProductController extends Controller
         if ($request->hasFile('file')) {
             $image = $request->file('file');
             $fileName = 'small_'.time() . '_' . Str::lower(Str::random(2)) . '.' . $image->getClientOriginalExtension();
-            $path_to = '/temp/images/' . getfolderName();
+            $path_to = '/images/' . getfolderName();
             $image->storeAs('public' . $path_to, $fileName);
             $prevPath = 'storage' . $path_to . '/' . $fileName;
             Image::make(storage_path('app/public' . $path_to . '/' . $fileName))->resize(350, null, function ($constraint) {
@@ -321,7 +321,7 @@ class ProductController extends Controller
             $fileName = time().'_'.Str::lower(Str::random(2)).'.'.$image->getClientOriginalExtension();
             $fileBigName = 'big_'.$fileName;
             $fileSmallName = 'thumb_'.$fileName;
-            $path_to = '/temp/images/'.getfolderName();
+            $path_to = '/images/'.getfolderName();
             $image->storeAs('public'.$path_to, $fileBigName);
             $image->storeAs('public'.$path_to, $fileSmallName);
             Image::make(storage_path('app/public'.$path_to.'/'.$fileSmallName))->fit(100, 100)->save();
@@ -329,7 +329,7 @@ class ProductController extends Controller
             \App\Models\Image::create([
                 'product_id' => $request->product_id,
                 'img' => $imgPath,
-                'thumbnail' => str_replace('big_', 'small_', $imgPath)
+                'thumbnail' => str_replace('big_', 'thumb_', $imgPath)
             ]);
             return response()->json(['success'=>$imgPath]);
         }else {

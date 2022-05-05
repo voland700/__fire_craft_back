@@ -43,7 +43,7 @@ class Dealer extends Model
     public function getIsHttpAttribute()
     {
         if ((!(substr($this->site, 0, 7) == 'http://')) && (!(substr($this->site, 0, 8) == 'https://'))) {
-            return 'http://' . $this->site;
+            return 'https://' . $this->site;
         } else {
             return $this->site;
         }

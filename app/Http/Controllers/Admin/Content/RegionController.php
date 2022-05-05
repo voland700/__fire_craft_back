@@ -63,7 +63,11 @@ class RegionController extends Controller
      */
     public function update(RegionRequest $request, $id)
     {
-        //
+        $region = Region::find($id);
+        $data = $request->all();
+        $data['active'] = $request->has('active') ? 1 : 0;
+        $region->update($data);
+        return redirect()->route('region.index')->with('success', 'Данные региона обновлены');
     }
 
     /**

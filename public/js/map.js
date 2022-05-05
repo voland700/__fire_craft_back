@@ -1429,10 +1429,6 @@ jQuery.fn.vectorMap('addMap', 'russia', {
 
 
 
-
-
-
-
 		colorRegion = '#84969F'; // Цвет всех регионов #84969F
 		focusRegion = '#FF9900'; // Цвет подсветки регионов при наведении на объекты из списка #FF9900
 		selectRegion = '#3a4c54'; // Цвет изначально подсвеченных регионов #2B383E
@@ -1443,8 +1439,6 @@ jQuery.fn.vectorMap('addMap', 'russia', {
 		for (iso in data_obj) {
 			highlighted_states[iso] = selectRegion;
 		}
-
-
 
 		$(document).ready(function () {
 			$('#vmap').vectorMap({
@@ -1475,8 +1469,8 @@ jQuery.fn.vectorMap('addMap', 'russia', {
 				},
 				// Клик по региону
 				onRegionClick: function (element, code, region) {
-					//document.location.replace('/partners/'+code+'/'); /* -- переход по ссылке на регион --*/
-					alert(region + ' - ' + code);
+					document.location.replace('/dealers/region/'+code+'/'); /* -- переход по ссылке на регион --*/
+					//alert(region + ' - ' + code);
 				}
 			});
 

@@ -41,7 +41,7 @@ class IndexController extends Controller
                 return $item;
             });
             Cache::put('advicesProducts', $advicesProducts, 1440);
-        }   
+        }
         return view('front.index', compact('sliders', 'favoriteCategories', 'advicesProducts'));
     }
 }
