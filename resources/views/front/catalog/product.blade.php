@@ -302,4 +302,38 @@
     </div>
 
 </div>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "{{$product->name}}",
+        "image": [
+            "{{asset($product->img)}}"@if($product->images->isNotEmpty()) @foreach($product->images as $image), "{{asset($image->img)}}"@endforeach @endif
+       ],
+        "description": "{{ $product->summary ? strip_tags($product->summary) : substr(strip_tags($product->description), 0, 200) }}",
+        @if($product->art_number)
+        "sku": "{{$product->art_number}}",
+        @endif
+        @if($brand)
+        "brand": {
+            "@type": "Brand",
+            "name": "{{$brand}}"
+        },
+        @endif
+        "offers": {
+            "@type": "Offer",
+            "url": "{{ route('catalog.product', ['slug' => $product->slug]) }}",
+            "priceCurrency": "RUB",
+            "price": "{{ str_replace(' ','',$product->cost) }}",
+            "priceValidUntil": "{{ Carbon\Carbon::now()->toDateString()}}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "OOO FIRE-CRAFT"
+            }
+        }
+    }
+</script>
 @endsection

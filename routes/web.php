@@ -26,7 +26,6 @@ Route::post('/get-offer-product', [App\Http\Controllers\Front\CatalogController:
 Route::get('/get-results', [App\Http\Controllers\Front\CatalogController::class, 'typeaheadSearch']);
 Route::get('/search', [App\Http\Controllers\Front\CatalogController::class, 'search'])->name('search');
 
-
 Route::get('/dealers', [App\Http\Controllers\Front\DealerController::class, 'list'])->name('dealer.list');
 Route::get('/dealers/region/{slug}', [App\Http\Controllers\Front\DealerController::class, 'region'])->name('dealer.region');
 Route::get('/dealers/detail/{slug}', [App\Http\Controllers\Front\DealerController::class, 'detail'])->name('dealer.detail');

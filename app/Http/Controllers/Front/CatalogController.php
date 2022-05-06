@@ -33,8 +33,15 @@ class CatalogController extends Controller
     {
         $product = Product::with('discount', 'offers', 'images', 'documents')->where([['active', 1], ['slug', $slug]])->firstOrFail();
         $category = Category::where('id', $product->category_id)->firstOrFail();
+        $brand = null;
         if($product->properties){
             $product->properties = json_decode($product->properties);
+            foreach ($product->properties as $prop){
+              if($prop->name == 'Бренд:' || $prop->name == 'Бренд'){
+                    $brand = $prop->value;
+                    break;
+                }
+            }
         }
         addDataPriceItem($product);
 
@@ -44,8 +51,8 @@ class CatalogController extends Controller
             $offer = $product->offers->sortBy('sort')->first();
             //getPrice($offer);
         }
-        //dd($product->documents);
-        return view('front.catalog.product', compact('product', 'category', 'offer'));
+        //dd($brand);
+        return view('front.catalog.product', compact('product', 'category', 'offer', 'brand'));
     }
 
     public function getOfferList(Request $request)

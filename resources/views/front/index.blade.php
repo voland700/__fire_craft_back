@@ -181,5 +181,39 @@
             </div>
         </section>
     @endif
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Фаир-Крафт",
+    "description": "ООО Фаир-Крафт -  официальный представитель JOTUL, MORSO и SCAN в Росии - Скандинаских производителей печей и каминов. Оптовая и розничная продажа печей и каминов Jotul - Норвегия и Morso - Дания",
+    "url": "https://fire-craf.ru",
+    "logo": "{{asset('/images/src/icons/logo.svg')}}",
+    "email": "support@link-assistant.com",
+    "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "RU",
+                    "postalCode": "117574",
+                    "addressLocality": "Москва, Россия",
+                    "streetAddress": "МКАД, 38-й километр, 4Б, стр. 1, "
+    },
+    "founder": {
+                    "@type": "Person",
+                    "name": "Косиор Татьяна Васильевна",
+                    "gender": "женский",
+                    "jobTitle": "Генеральный директор"
+    },
+    "foundingDate": "21.03.2015",
+    "contactPoint" : [
+        {
+            "@type" : "ContactPoint",
+            "contactType" : "обслуживание клиентов",
+            "email": "info@fire-craft.ru",
+            "url": "https://fire-craft.ru"
+        }
+    ]
+}
+</script>
 @endsection
 
